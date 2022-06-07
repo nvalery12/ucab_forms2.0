@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/css/style.css">
+  <link rel="icon" href="styles/resource/ucabform.png">
+  <title>UCAB Form</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <img src="styles/resource/logo-white.png" alt="UCAB Form">
+    </nav>
+  </header>
+  <main>
+    <section>
+      <div class="container">
+        <div class="user signinBx">
+          <div class="imgBx"><img src="styles/resource/ucab_guayana - Copy.jpg" alt=""></div>
+          <div class="formBx">
+            <form action="">
+              <h2>Iniciar sesión</h2>
+              <input type="email" placeholder="Correo electronico" autocomplete="on" name="email">
+              <div class="passInput">
+                <input type="password" id="inputPass" name="userpass" placeholder="Contraseña" name="password">
+                <div class="passwordInput">
+                  <span id="showPassword" onclick="showPassword()">
+                      <div id="showPass"></div>
+                  </span>
+                  <span id="hidePassword" class="hidePassword" onclick="hidePassword()">
+                    <div id="hidePass"></div>
+                  </span>
+                </div>
+              </div>
+              <input type="submit" value="Iniciar sesión">
+              <p class="signup">¿No tienes una cuenta? <a href="#" onclick="toggleFrom();">Registrarse</a></p>
+            </form>
+          </div>
+        </div>
+  
+        <div class="user signupBx">
+          <div class="formBx">
+            <form action="">
+              <h2>Registrarse</h2>
+              <input type="email" placeholder="Correo electronico" autocomplete="on" name="email">
+              
+              <div class="passInput">
+                <input type="password" id="inputPass1" name="inputPass1" placeholder="Contraseña">
+                <div class="passwordInput">
+                  <span id="showPassword1" onclick="showPassword1()">
+                      <div id="showPass"></div>
+                  </span>
+                  <span id="hidePassword1" class="hidePassword" onclick="hidePassword1()">
+                    <div id="hidePass"></div>
+                  </span>
+                </div>
+              </div>
+
+              <div class="passInput">
+                <input type="password" id="confinputPass" name="confinputPass" placeholder="Contraseña">
+                <div class="passwordInput">
+                  <span id="confshowPassword" onclick="showconfPassword()">
+                      <div id="showPass"></div>
+                  </span>
+                  <span id="confhidePassword" class="hidePassword" onclick="hideconfPassword()">
+                    <div id="hidePass"></div>
+                  </span>
+                </div>
+              </div>
+
+              <span id='message'></span>
+              <input type="submit" value="Registrarse">
+              <p class="signup">¿Ya tienes una cuenta? <a href="#" onclick="toggleFrom();">Iniciar sesión</a></p>
+            </form>
+          </div>
+          <div class="imgBx"><img src="styles/resource/Entrada Edif. Lab. VI.JPG" alt=""></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="styles/js/funtion.js"></script>
+</body>
+</html>

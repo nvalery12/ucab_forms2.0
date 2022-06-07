@@ -1,43 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/css/style.css">
+  <link rel="icon" href="styles/resource/ucabform.png">
+  <title>UCAB Form</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <img src="styles/resource/logo-white.png" alt="UCAB Form">
+    </nav>
+  </header>
+  <main>
+    <section>
+      <div class="container">
+        <div class="user signinBx">
+          <div class="imgBx"><img src="styles/resource/ucab_guayana - Copy.jpg" alt=""></div>
+          <div class="formBx">
+            <form action="">
+              <h2>Iniciar sesión</h2>
+              <input type="email" placeholder="Correo electronico" autocomplete="on" name="email">
+              <div class="passInput">
+                <input type="password" id="inputPass" name="userpass" placeholder="Contraseña" name="password">
+                <div class="passwordInput">
+                  <span id="showPassword" onclick="showPassword()">
+                      <div id="showPass"></div>
+                  </span>
+                  <span id="hidePassword" class="hidePassword" onclick="hidePassword()">
+                    <div id="hidePass"></div>
+                  </span>
+                </div>
+              </div>
+              <input type="submit" value="Iniciar sesión">
+              <p class="signup">¿No tienes una cuenta? <a href="#" onclick="toggleFrom();">Registrarse</a></p>
+            </form>
+          </div>
+        </div>
+  
+        <div class="user signupBx">
+          <div class="formBx">
+            <form action="">
+              <h2>Registrarse</h2>
+              <input type="email" placeholder="Correo electronico" autocomplete="on" name="email">
+              
+              <div class="passInput">
+                <input type="password" id="inputPass1" name="inputPass1" placeholder="Contraseña">
+                <div class="passwordInput">
+                  <span id="showPassword1" onclick="showPassword1()">
+                      <div id="showPass"></div>
+                  </span>
+                  <span id="hidePassword1" class="hidePassword" onclick="hidePassword1()">
+                    <div id="hidePass"></div>
+                  </span>
+                </div>
+              </div>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+              <div class="passInput">
+                <input type="password" id="confinputPass" name="confinputPass" placeholder="Contraseña">
+                <div class="passwordInput">
+                  <span id="confshowPassword" onclick="showconfPassword()">
+                      <div id="showPass"></div>
+                  </span>
+                  <span id="confhidePassword" class="hidePassword" onclick="hideconfPassword()">
+                    <div id="hidePass"></div>
+                  </span>
+                </div>
+              </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+              <span id='message'></span>
+              <input type="submit" value="Registrarse">
+              <p class="signup">¿Ya tienes una cuenta? <a href="#" onclick="toggleFrom();">Iniciar sesión</a></p>
+            </form>
+          </div>
+          <div class="imgBx"><img src="styles/resource/Entrada Edif. Lab. VI.JPG" alt=""></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="styles/js/funtion.js"></script>
+</body>
 </html>

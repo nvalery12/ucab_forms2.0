@@ -6,11 +6,11 @@ function Header() {
   return (
     <div className="header">
       <div className='headerInfo'>
-        <img src={formimage} alt="Ucab Form Logo" width="410" height="110"/>
+        <img src={formimage} alt="Ucab Form Logo"/>
       </div>
       <div className='headerOption'>
-        <a href={'url'}>Crear encuesta</a>
-        <a href={'url'}>Ver resultados</a>
+        <a href='#'>Crear encuesta</a>
+        <a href='#'>Ver resultados</a>
       </div>
       <div className='headerUser'>
       </div>

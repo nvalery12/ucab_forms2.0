@@ -48,7 +48,7 @@ function PreguntaLargaCorta(props){
         autoComplete="off"
         >
           <Stack spacing = {3}>
-              <p className = "type_answer">Respuesta corta</p>
+              <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
               <IconButton sx = {{position:'absolute',right: '5%',color: "green"}} onClick = {handleOpenModal}>
                 <BuildCircleIcon fontSize="large" sx = {{color: "green"}}/>
               </IconButton>
@@ -89,13 +89,13 @@ function PreguntaLargaCorta(props){
                   </ListSubheader>
                 }
               >
-              <ListItemButton>
+              <ListItemButton onClick = {handleCloseModal}>
                 <ListItemIcon>
                   <RadioButtonCheckedIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Selección simple"/>
               </ListItemButton>
-              <ListItemButton>
+              <ListItemButton onClick = {handleCloseModal}>
                 <ListItemIcon>
                   <CheckBoxIcon/>
                 </ListItemIcon>
@@ -107,21 +107,21 @@ function PreguntaLargaCorta(props){
               </ListItemButton>
               <Collapse in={openDespliegue} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemButton sx={{ pl: 4 }} onClick = {handleCloseModal}>
                     <ListItemText primary="Respuesta Corta" />
                   </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemButton sx={{ pl: 4 }} onClick = {handleCloseModal}>
                     <ListItemText primary="Respuesta Larga" />
                   </ListItemButton>
                 </List>
               </Collapse>
-              <ListItemButton>
+              <ListItemButton onClick = {handleCloseModal}>
                 <ListItemIcon>
                   <DateRangeIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Fecha"/>
               </ListItemButton>
-              <ListItemButton>
+              <ListItemButton onClick = {handleCloseModal}>
                 <ListItemIcon>
                   <ImageIcon/>
                 </ListItemIcon>

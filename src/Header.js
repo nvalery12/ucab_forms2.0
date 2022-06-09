@@ -9,8 +9,8 @@ function Header() {
         <img src={formimage} alt="Ucab Form Logo"/>
       </div>
       <div className='headerOption'>
-        <a href='#'>Crear encuesta</a>
-        <a href='#'>Ver resultados</a>
+        <a href='0#'>Crear encuesta</a>
+        <a href='0#'>Ver resultados</a>
       </div>
       <div className='headerUser'>
       </div>

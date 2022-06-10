@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import './CrearEncuesta.css';
 
@@ -22,10 +22,8 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
 
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 
-
-function PreguntaLargaCorta(props){
+function PreguntaMultimedia(props){
 
   const [openModal, setOpenModal] = React.useState(false);
   const [openDespliegue, setOpenDespliegue] = React.useState(false);
@@ -48,23 +46,16 @@ function PreguntaLargaCorta(props){
         autoComplete="off"
         >
           <Stack spacing = {3}>
-              <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
+              <p className = "type_answer">Adjuntar Archivo</p>
               <IconButton sx = {{position:'absolute',right: '5%',color: "green"}} onClick = {handleOpenModal}>
                 <BuildCircleIcon fontSize="large" sx = {{color: "green"}}/>
               </IconButton>
               <IconButton sx = {{position:'absolute',right: '2%',color: "green"}} onClick = {borrarPregunta}>
                 <CancelIcon fontSize="large" sx = {{color: "green"}}/>
               </IconButton>
-              <TextField
-                style = {{marginLeft: '2%',marginBottom:'2%'}}
-                id="outlined-multiline-flexible"
-                label="Descripcion de la encuesta"
-                multiline
-                maxRows={4}
-                variant="standard"
-                InputProps={{style: {width: '92%', borderBottom: '3px solid green'}}}
-              />
-
+              <div style = {{textAlign: 'center'}}>
+              <input style = {{fontSize: '20px'}} accept = "image/*" type = "file" placeholder = "insertar imagen" id = "adjuntar imagen"/>
+              </div>
           </Stack>
         </Box>
         <Modal
@@ -89,13 +80,13 @@ function PreguntaLargaCorta(props){
                   </ListSubheader>
                 }
               >
-              <ListItemButton onClick = {handleCloseModal}>
+              <ListItemButton>
                 <ListItemIcon>
                   <RadioButtonCheckedIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Selección simple"/>
               </ListItemButton>
-              <ListItemButton onClick = {handleCloseModal}>
+              <ListItemButton>
                 <ListItemIcon>
                   <CheckBoxIcon/>
                 </ListItemIcon>
@@ -107,21 +98,21 @@ function PreguntaLargaCorta(props){
               </ListItemButton>
               <Collapse in={openDespliegue} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }} onClick = {handleCloseModal}>
+                  <ListItemButton sx={{ pl: 4 }}>
                     <ListItemText primary="Respuesta Corta" />
                   </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }} onClick = {handleCloseModal}>
+                  <ListItemButton sx={{ pl: 4 }}>
                     <ListItemText primary="Respuesta Larga" />
                   </ListItemButton>
                 </List>
               </Collapse>
-              <ListItemButton onClick = {handleCloseModal}>
+              <ListItemButton>
                 <ListItemIcon>
                   <DateRangeIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Fecha"/>
               </ListItemButton>
-              <ListItemButton onClick = {handleCloseModal}>
+              <ListItemButton>
                 <ListItemIcon>
                   <ImageIcon/>
                 </ListItemIcon>
@@ -136,4 +127,4 @@ function PreguntaLargaCorta(props){
 
 }
 
-export default PreguntaLargaCorta;
+export default PreguntaMultimedia

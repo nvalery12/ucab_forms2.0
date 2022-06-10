@@ -59,7 +59,7 @@ function PreguntaSeleccion(props){
         autoComplete="off"
         >
           <Stack spacing = {3}>
-              <p className = "type_answer">Seleccion Multiple</p>
+              <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
               <IconButton sx = {{position:'absolute',right: '5%',color: "green"}} onClick = {handleOpenModal}>
                 <BuildCircleIcon fontSize="large" sx = {{color: "green"}}/>
               </IconButton>

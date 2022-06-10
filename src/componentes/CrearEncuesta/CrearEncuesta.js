@@ -5,7 +5,9 @@ import './CrearEncuesta.css';
 //import Pregunta from './Pregunta.js';
 import PreguntaForm from './PreguntaForm.js';
 import PreguntaLargaCorta from './PreguntaLargaCorta.js';
-//import PreguntaSeleccion from './PreguntaSeleccion.js';
+import PreguntaSeleccion from './PreguntaSeleccion.js';
+import PreguntaMultimedia from './PreguntaMultimedia.js';
+import PreguntaFecha from './PreguntaFecha.js';
 
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
@@ -23,6 +25,49 @@ function CrearEncuesta(){
      const listaFiltrada = listaPreguntas.filter((e, index) => index !== id);
      setListaPreguntas(listaFiltrada);
    };
+
+   const select_type_answer = (pregunta,index) =>{
+     switch (pregunta.tipo_pregunta) {
+       case "Respuesta Corta":
+         return <PreguntaLargaCorta
+                  pregunta={pregunta}
+                  borrarPregunta={borrarPregunta}
+                  id={index}
+                 />
+        case "Respuesta Larga":
+          return <PreguntaLargaCorta
+                   pregunta={pregunta}
+                   borrarPregunta={borrarPregunta}
+                   id={index}
+                  />
+        case "Selección simple":
+          return <PreguntaSeleccion
+                   pregunta={pregunta}
+                   borrarPregunta={borrarPregunta}
+                   id={index}
+                  />
+        case "Selección multiple":
+          return <PreguntaSeleccion
+                   pregunta={pregunta}
+                   borrarPregunta={borrarPregunta}
+                   id={index}
+                  />
+        case  "Fecha":
+          return <PreguntaFecha
+                    pregunta={pregunta}
+                    borrarPregunta={borrarPregunta}
+                    id={index}
+                   />
+        case "Multimedia":
+          return <PreguntaMultimedia
+                    pregunta={pregunta}
+                    borrarPregunta={borrarPregunta}
+                    id={index}
+                   />
+       default:
+         console.log("Nothing");
+     }
+   }
 
   return(
     <div>
@@ -46,12 +91,8 @@ function CrearEncuesta(){
         <PreguntaForm nuevaPregunta = {nuevaPregunta}/>
         <div>
         {
-          listaPreguntas.map((e,index) =>(
-            <PreguntaLargaCorta
-             pregunta={e}
-             borrarPregunta={borrarPregunta}
-             id={index}
-            />
+          listaPreguntas.map((pregunta,index) =>(
+            select_type_answer(pregunta,index)
           ))
         }
         </div>
@@ -60,3 +101,10 @@ function CrearEncuesta(){
 }
 
 export default CrearEncuesta;
+
+
+// <PreguntaLargaCorta
+//  pregunta={e}
+//  borrarPregunta={borrarPregunta}
+//  id={index}
+// />

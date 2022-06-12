@@ -44,6 +44,7 @@ function PreguntaMultimedia(props){
         className = "question"
         noValidate
         autoComplete="off"
+        sx={{padding: "20px 0px"}}
         >
           <Stack spacing = {3}>
               <p className = "type_answer">Adjuntar Archivo</p>

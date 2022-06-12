@@ -42,13 +42,16 @@ function PreguntaLargaCorta(props){
   return (
     <div>
         <Box
+        id="outlined-name"
         component="form"
         className = "question"
         noValidate
         autoComplete="off"
+        sx={{padding: "20px 0px"}}
         >
           <Stack spacing = {3}>
-              <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
+          {/*------------------------------- AQUI --------------------------------*/}
+              <p className = "type_answer">{props.pregunta.tipo_pregunta}</p> 
               <IconButton sx = {{position:'absolute',right: '5%',color: "green"}} onClick = {handleOpenModal}>
                 <BuildCircleIcon fontSize="large" sx = {{color: "green"}}/>
               </IconButton>

@@ -113,5 +113,5 @@ export default function Login() {
         </section>
       </main>
     </div>
-    );
+  );
 }

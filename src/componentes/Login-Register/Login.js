@@ -36,6 +36,11 @@ export default function Login() {
     }
   }
 
+  const account = (e) => {
+    e.preventDefault();
+    setHasAccount(!hasAccount);
+  };
+
   const togglePassword = (e) => {
     e.preventDefault();
     setPasswordShown(!passwordShown);
@@ -92,12 +97,12 @@ export default function Login() {
                       {!hasAccount ? (
                         <>
                           <input disabled={ loading || currentUser }  onClick={handleLogin} type="submit" value="Iniciar sesión" />
-                          <p className="signup">¿No tienes una cuenta? <a href="0#" onClick={() => setHasAccount(!hasAccount)}>Registrarse</a></p>
+                          <p className="signup">¿No tienes una cuenta? <a href="0#" onClick={account}>Registrarse</a></p>
                         </>
                       ) : (
                         <>
                           <input disabled={ loading || currentUser } onClick={handleSignup} type="submit" value="Registrarse"/>
-                          <p className="signup">¿Ya tienes una cuenta? <a href="0#" onClick={() => setHasAccount(!hasAccount)}>Iniciar sesión</a></p>
+                          <p className="signup">¿Ya tienes una cuenta? <a href="0#" onClick={account}>Iniciar sesión</a></p>
                         </>
                       )}
                     </div>

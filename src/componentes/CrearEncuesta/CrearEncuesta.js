@@ -8,7 +8,7 @@ import PreguntaLargaCorta from './PreguntaLargaCorta.js';
 import PreguntaSeleccion from './PreguntaSeleccion.js';
 import PreguntaMultimedia from './PreguntaMultimedia.js';
 import PreguntaFecha from './PreguntaFecha.js';
-
+import BCrearEncuesta from './btnCrearEncuesta';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -88,14 +88,15 @@ function CrearEncuesta(){
                 />
             </Stack>
         </Box>
-        <PreguntaForm nuevaPregunta = {nuevaPregunta}/>
         <div>
         {
           listaPreguntas.map((pregunta,index) =>(
             select_type_answer(pregunta,index)
           ))
         }
+        <PreguntaForm nuevaPregunta = {nuevaPregunta}/>
         </div>
+        <BCrearEncuesta/>
     </div>
   );
 }

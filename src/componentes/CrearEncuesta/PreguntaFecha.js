@@ -26,6 +26,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import esLocale from "date-fns/locale/es";
 import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 
 function PreguntaFecha(props){
 
@@ -50,16 +51,33 @@ function PreguntaFecha(props){
         className = "question"
         noValidate
         autoComplete="off"
-        sx={{padding: "20px 0px"}}
+        sx={{paddingBottom: "10px"}}
         >
           <Stack spacing = {3}>
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              className = "questionTitle"
+            >
               <p className = "type_answer">Fecha</p>
-              <IconButton sx = {{position:'absolute',right: '5%',color: "green"}} onClick = {handleOpenModal}>
-                <BuildCircleIcon fontSize="large" sx = {{color: "green"}}/>
+              <IconButton sx = {{position:'absolute',right: '5%',color: "#fff"}} onClick = {handleOpenModal}>
+                <BuildCircleIcon fontSize="large" sx = {{color: "#ffc526"}}/>
               </IconButton>
-              <IconButton sx = {{position:'absolute',right: '2%',color: "green"}} onClick = {borrarPregunta}>
-                <CancelIcon fontSize="large" sx = {{color: "green"}}/>
+              <IconButton sx = {{position:'absolute',right: '1%',color: "green"}} onClick = {borrarPregunta}>
+                <CancelIcon fontSize="large" sx = {{color: "#ffc526"}}/>
               </IconButton>
+            </Grid>
+              <TextField
+                required
+                id="filled-required"
+                label="Titulo de la pregunta"
+                defaultValue=""
+                style = {{width: '80%', marginLeft:'10px'}} 
+                size="small"
+                variant="filled"
+              />
               <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale = {esLocale}>
               <DateTimePicker
                 // disabled
@@ -68,7 +86,7 @@ function PreguntaFecha(props){
                 onChange={(newValue) => {
                   setSelectedDate(newValue);
                 }}
-                renderInput={(params) => <TextField {...params} style = {{width: '50%', marginLeft:'10px'}} size="small"/>}
+                renderInput={(params) => <TextField {...params} style = {{width: '80%', marginLeft:'10px'}} size="small"/>}
               />
               </LocalizationProvider>
           </Stack>

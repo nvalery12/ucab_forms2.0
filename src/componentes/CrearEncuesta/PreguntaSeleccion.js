@@ -57,6 +57,7 @@ function PreguntaSeleccion(props){
         className = "question"
         noValidate
         autoComplete="off"
+        sx={{padding: "20px 0px"}}
         >
           <Stack spacing = {3}>
               <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
@@ -93,7 +94,7 @@ function PreguntaSeleccion(props){
             autoComplete="off"
             >
               <List
-                sx={{borderRadius: "20px",width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                sx={{borderRadius: "20px",width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}
                 component="nav"
                 aria-labelledby="nested-list-subheader"
                 subheader={

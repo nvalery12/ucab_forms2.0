@@ -1,18 +1,23 @@
-//import logo from './logo.svg';
 import './App.css';
+import { useAuth } from './api/firebaseConfiguration';
 import CrearEncuesta from './componentes/CrearEncuesta/CrearEncuesta.js';
-// import Logo from './styles/resource/logo-white.png';
-import Header from './Header.js';
+import Header from './componentes/Header/Header';
+import Login from './componentes/Login-Register/Login';
 
 
-function App() {
+export default function App() {
+  const currentUser = useAuth();
+
   return (
     <div className="App">
-      <Header />
-
-      <CrearEncuesta/>
+      {(currentUser?.email) ? (
+        <div className="">
+          <Header />
+          <CrearEncuesta/>
+        </div>
+      ) : (
+        <Login/>
+      )}
     </div>
   );
 }
-
-export default App;

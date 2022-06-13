@@ -26,3 +26,12 @@
   text-decoration: none;
   margin: 0 10px;
 }
+
+.headerUser button {
+  background-color: #22968C;
+  border: none;
+}
+
+.headerUser button:hover {
+  cursor: pointer;
+}

@@ -20,11 +20,10 @@ import ImageIcon from '@mui/icons-material/Image';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
-
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import Box from '@mui/material/Box';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import esLocale from "date-fns/locale/es";
 import TextField from '@mui/material/TextField';
 
@@ -51,6 +50,7 @@ function PreguntaFecha(props){
         className = "question"
         noValidate
         autoComplete="off"
+        sx={{padding: "20px 0px"}}
         >
           <Stack spacing = {3}>
               <p className = "type_answer">Fecha</p>
@@ -61,15 +61,15 @@ function PreguntaFecha(props){
                 <CancelIcon fontSize="large" sx = {{color: "green"}}/>
               </IconButton>
               <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale = {esLocale}>
-                <DatePicker
-                  disabled
-                  label="Introducir fecha"
-                  value={selectedDate}
-                  onChange={(newValue) => {
-                    setSelectedDate(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
+              <DateTimePicker
+                // disabled
+                label="Introducir fecha"
+                value={selectedDate}
+                onChange={(newValue) => {
+                  setSelectedDate(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} style = {{width: '50%', marginLeft:'10px'}} size="small"/>}
+              />
               </LocalizationProvider>
           </Stack>
         </Box>

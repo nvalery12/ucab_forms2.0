@@ -75,7 +75,7 @@ function PreguntaMultimedia(props){
               />
               
               <div style = {{textAlign: 'center'}}>
-              <input style = {{fontSize: '20px'}} accept = "image/*" type = "file" placeholder = "insertar imagen" id = "adjuntar imagen"/>
+                <input style = {{fontSize: '20px'}} accept = "image/*" type = "file" placeholder = "insertar imagen" id = "adjuntar imagen"/>
               </div>
           </Stack>
         </Box>

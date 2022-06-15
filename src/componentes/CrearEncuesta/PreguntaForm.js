@@ -59,7 +59,7 @@ function PreguntaForm(props){
     <form onSubmit = {submit}>
         <ThemeProvider theme={theme}>
           <Button type = "submit" variant="contained" color='primary' sx = {{display: 'block', m: '20px auto', width:'150px'}}>
-            <IconButton><AddCircleOutlineOutlinedIcon fontSize="medium" color="secondary"/></IconButton>
+            <AddCircleOutlineOutlinedIcon fontSize="large" color="secondary" sx={{display: 'block', m: '0 auto'}}/>
           </Button>
         </ThemeProvider>
         

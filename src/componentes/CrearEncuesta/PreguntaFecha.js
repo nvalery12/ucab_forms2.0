@@ -48,7 +48,7 @@ function PreguntaFecha(props){
     <div>
         <Box
         component="form"
-        className = "question"
+        className = "box question"
         noValidate
         autoComplete="off"
         sx={{paddingBottom: "10px"}}
@@ -74,7 +74,7 @@ function PreguntaFecha(props){
                 id="filled-required"
                 label="Titulo de la pregunta"
                 defaultValue=""
-                style = {{width: '80%', marginLeft:'10px'}} 
+                style = {{width: '97%', marginLeft:'10px'}} 
                 size="small"
                 variant="filled"
               />
@@ -86,7 +86,7 @@ function PreguntaFecha(props){
                 onChange={(newValue) => {
                   setSelectedDate(newValue);
                 }}
-                renderInput={(params) => <TextField {...params} style = {{width: '80%', marginLeft:'10px'}} size="small"/>}
+                renderInput={(params) => <TextField {...params} style = {{width: '97%', marginLeft:'10px'}} size="small"/>}
               />
               </LocalizationProvider>
           </Stack>

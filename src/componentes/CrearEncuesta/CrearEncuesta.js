@@ -73,14 +73,14 @@ function CrearEncuesta(){
     <div>
         <Box
         component="form"
-        className = "title_encuesta"
+        className = "box title_encuesta"
         noValidate
         autoComplete="off"
         >
             <Stack spacing = {3}>
-                <TextField style = {{marginLeft: '2%'}}  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" InputProps={{ style: {width: '60%',fontSize: 40 } }} />
+                <TextField style = {{marginLeft: '2%'}}  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" InputProps={{ style: {width: '97%',fontSize: 40 } }} />
                 <TextField
-                  style = {{marginLeft: '2%',width:"92%",marginBottom:'2%'}}
+                  style = {{marginLeft: '2%',width:"95%",marginBottom:'2%'}}
                   id="outlined-multiline-flexible"
                   label="Descripcion de la encuesta"
                   multiline

@@ -22,8 +22,9 @@ import ImageIcon from '@mui/icons-material/Image';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
-
+import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 function PreguntaSeleccion(props){
 
@@ -54,19 +55,36 @@ function PreguntaSeleccion(props){
     <div>
         <Box
 
-        className = "question"
+        className = "box question"
         noValidate
         autoComplete="off"
-        sx={{padding: "20px 0px"}}
+        sx={{paddingBottom: "10px"}}
         >
           <Stack spacing = {3}>
-              <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
-              <IconButton sx = {{position:'absolute',right: '5%',color: "green"}} onClick = {handleOpenModal}>
-                <BuildCircleIcon fontSize="large" sx = {{color: "green"}}/>
-              </IconButton>
-              <IconButton sx = {{position:'absolute',right: '2%',color: "green"}} onClick = {borrarPregunta}>
-                <CancelIcon fontSize="large" sx = {{color: "green"}}/>
-              </IconButton>
+            <Grid
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                className = "questionTitle"
+              >
+                <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
+                <IconButton sx = {{position:'absolute',right: '5%',color: "#fff"}} onClick = {handleOpenModal}>
+                    <BuildCircleIcon fontSize="large" sx = {{color: "#ffc526"}}/>
+                  </IconButton>
+                  <IconButton sx = {{position:'absolute',right: '1%',color: "green"}} onClick = {borrarPregunta}>
+                    <CancelIcon fontSize="large" sx = {{color: "#ffc526"}}/>
+                  </IconButton>
+              </Grid>
+              <TextField
+                required
+                id="filled-required"
+                label="Titulo de la pregunta"
+                defaultValue=""
+                style = {{width: '97%', marginLeft:'10px'}} 
+                size="small"
+                variant="filled"
+              />
           </Stack>
           <OpcionesForm nuevaOpciones = {nuevaOpciones} />
           <div>

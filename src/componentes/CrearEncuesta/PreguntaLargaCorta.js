@@ -20,7 +20,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
-
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -44,20 +44,36 @@ function PreguntaLargaCorta(props){
         <Box
         id="outlined-name"
         component="form"
-        className = "question"
+        className = "box question"
         noValidate
         autoComplete="off"
-        sx={{padding: "20px 0px"}}
+        sx={{paddingBottom: "10px"}}
         >
           <Stack spacing = {3}>
-          {/*------------------------------- AQUI --------------------------------*/}
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              className = "questionTitle"
+            >
               <p className = "type_answer">{props.pregunta.tipo_pregunta}</p> 
-              <IconButton sx = {{position:'absolute',right: '5%',color: "green"}} onClick = {handleOpenModal}>
-                <BuildCircleIcon fontSize="large" sx = {{color: "green"}}/>
-              </IconButton>
-              <IconButton sx = {{position:'absolute',right: '2%',color: "green"}} onClick = {borrarPregunta}>
-                <CancelIcon fontSize="large" sx = {{color: "green"}}/>
-              </IconButton>
+              <IconButton sx = {{position:'absolute',right: '5%',color: "#fff"}} onClick = {handleOpenModal}>
+                  <BuildCircleIcon fontSize="large" sx = {{color: "#ffc526"}}/>
+                </IconButton>
+                <IconButton sx = {{position:'absolute',right: '1%',color: "green"}} onClick = {borrarPregunta}>
+                  <CancelIcon fontSize="large" sx = {{color: "#ffc526"}}/>
+                </IconButton>
+            </Grid>
+              <TextField
+                required
+                id="filled-required"
+                label="Titulo de la pregunta"
+                defaultValue=""
+                style = {{width: '97%', marginLeft:'10px'}} 
+                size="small"
+                variant="filled"
+              />
               <TextField
                 style = {{marginLeft: '2%',marginBottom:'2%'}}
                 id="outlined-multiline-flexible"
@@ -65,7 +81,7 @@ function PreguntaLargaCorta(props){
                 multiline
                 maxRows={4}
                 variant="standard"
-                InputProps={{style: {width: '92%', borderBottom: '3px solid green'}}}
+                InputProps={{style: {width: '97%', borderBottom: '3px solid green'}}}
               />
 
           </Stack>

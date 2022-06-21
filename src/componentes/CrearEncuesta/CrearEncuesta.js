@@ -8,7 +8,7 @@ import PreguntaLargaCorta from './PreguntaLargaCorta.js';
 import PreguntaSeleccion from './PreguntaSeleccion.js';
 import PreguntaMultimedia from './PreguntaMultimedia.js';
 import PreguntaFecha from './PreguntaFecha.js';
-
+import BCrearEncuesta from './btnCrearEncuesta';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -73,14 +73,14 @@ function CrearEncuesta(){
     <div>
         <Box
         component="form"
-        className = "title_encuesta"
+        className = "box title_encuesta"
         noValidate
         autoComplete="off"
         >
             <Stack spacing = {3}>
-                <TextField style = {{marginLeft: '2%'}}  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" InputProps={{ style: {width: '60%',fontSize: 40 } }} />
+                <TextField style = {{marginLeft: '2%'}}  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" InputProps={{ style: {width: '97%',fontSize: 40 } }} />
                 <TextField
-                  style = {{marginLeft: '2%',width:"92%",marginBottom:'2%'}}
+                  style = {{marginLeft: '2%',width:"95%",marginBottom:'2%'}}
                   id="outlined-multiline-flexible"
                   label="Descripcion de la encuesta"
                   multiline
@@ -88,14 +88,15 @@ function CrearEncuesta(){
                 />
             </Stack>
         </Box>
-        <PreguntaForm nuevaPregunta = {nuevaPregunta}/>
         <div>
         {
           listaPreguntas.map((pregunta,index) =>(
             select_type_answer(pregunta,index)
           ))
         }
+        <PreguntaForm nuevaPregunta = {nuevaPregunta}/>
         </div>
+        <BCrearEncuesta/>
     </div>
   );
 }

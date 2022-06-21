@@ -1,14 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
 .header {
-  position: sticky;
   background-color: #22968C;
   padding: 15px;
   display: flex;
@@ -19,6 +9,7 @@
 
 .header img{
   height: 41.5px;
+  margin-top: 10px;
 }
 
 .headerOption a{
@@ -32,6 +23,23 @@
   border: none;
 }
 
+#hamburger{
+  display: grid;
+  color: black;
+}
+
 .headerUser button:hover {
   cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  #menu-links {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  #hamburger {
+    display: none;
+  }
 }

@@ -15,7 +15,9 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import ImageIcon from '@mui/icons-material/Image';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-
+import IconButton from '@mui/material/IconButton';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
 function PreguntaForm(props){
@@ -40,11 +42,27 @@ function PreguntaForm(props){
     //props.nuevaPregunta({id: uuidv4()});
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ffc526',
+        darker: '#1e566e',
+      },
+      secondary: {
+        main: '#fff',
+        contrastText: '#fff',
+      },
+    },
+  });
+
   return (
     <form onSubmit = {submit}>
-        <Button type = "submit" variant="contained" sx = {{display: 'block', m: 'auto'}}>
-          Crear pregunta
-        </Button>
+        <ThemeProvider theme={theme}>
+          <Button type = "submit" variant="contained" color='primary' sx = {{display: 'block', m: '20px auto', width:'150px'}}>
+            <AddCircleOutlineOutlinedIcon fontSize="large" color="secondary" sx={{display: 'block', m: '0 auto'}}/>
+          </Button>
+        </ThemeProvider>
+        
         <Modal
           open={openModal}
           onClose={handleCloseModal}

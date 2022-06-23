@@ -1,5 +1,6 @@
 import './App.css';
 import { useAuth } from './api/firebaseConfiguration';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 // import {
 //   BrowserRouter as Router,
 //   Routes,
@@ -16,16 +17,41 @@ import Login from './componentes/Login-Register/Login';
 export default function App() {
   const currentUser = useAuth();
 
+  const theme = createTheme( {
+    typography: {
+      fontFamily: [
+        'Poppins',
+        'sans-serif'
+      ].join(',')
+    },
+    palette: {
+      primary: {
+        light: '#579bb9',
+        main: '#2e83a8',
+        dark: '#205b75',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ffd051',
+        main: '#ffc526',
+        dark: '#ffd051',
+        contrastText: '#000',
+      },
+    }
+  });
+
   return (
       <div className="App">
-        {(currentUser?.email) ? (
-          <div className="">
-            <Header />
-            <VerEncuestas/>
-          </div>
-        ) : (
-          <Login/>
-        )}
+        <ThemeProvider theme={theme}>
+          {(currentUser?.email) ? (
+            <div className="">
+              <Header />
+              <UserConfig/>
+            </div>
+          ) : (
+            <Login/>
+          )}
+        </ThemeProvider>
       </div>
   );
 }

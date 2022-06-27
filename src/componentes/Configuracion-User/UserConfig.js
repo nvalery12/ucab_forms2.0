@@ -21,11 +21,11 @@ export default function UserConfig() {
     <Box className='sidebar-container' sx={{ height: window.innerHeight-77.9}}>
       <Toolbar disableGutters className='sidebar-menu' sx={{ height: '100%', justifyContent: "center", alignItems: "start" }}>
         <Box sx={{ overflow: 'auto'}}>
-          <List sx={{ color: '#22968C'}}>
+          <List sx={{  color: 'white'}}>
             {['Cuenta', 'Seguridad', 'Localización'].map((text, index) => (
               <ListItem sx={{ margin: '10px 0px'  }} key={text} disablePadding>
-                <ListItemButton sx={{ display: 'grid', justifyContent: 'center'}}>
-                  <ListItemIcon sx={{ color: '#22968C',justifyContent: 'center'}}>
+                <ListItemButton sx={{ display: 'grid', justifyContent: 'center', borderRadius:'5px'}}>
+                  <ListItemIcon sx={{ color: 'white',justifyContent: 'center'}}>
                     {iconos[index]}
                   </ListItemIcon>
                   <ListItemText primary={text} />

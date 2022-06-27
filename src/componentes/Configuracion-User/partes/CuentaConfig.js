@@ -9,11 +9,13 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Divider from '@mui/material/Divider';
 import DeleteIcon from '@mui/icons-material/Delete';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const CuentaConfig = () => {
 
   return (
-    <div>
+    <div disablePadding style={{boxSizing: 'border-box', height: window.innerHeight-77.9, overflow:'scroll', margin:'-24px'}}>
       <h1 id='titulo-config'>Configuración de cuenta</h1>
       <form action="">
         <Divider sx={{marginBottom:'10px'}}/>
@@ -40,7 +42,7 @@ const CuentaConfig = () => {
           </div>
           <div className="Udatos user-genero">
           <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label">Genero</FormLabel>
+            <FormLabel id="demo-row-radio-buttons-group-label" sx={{color:'black', fontSize:'17px'}}>Genero</FormLabel>
             <RadioGroup
               row
               name="row-radio-buttons-group"
@@ -55,6 +57,18 @@ const CuentaConfig = () => {
         <Divider sx={{marginBottom:'10px'}}/>
         <span className='subtutilos-config'>Vincular cuentas</span>
         <div className="userConfig user-cuentasExternas">
+          <div className="icon-account">
+            <a href="#0" className="icon icon--instagram">
+              <InstagramIcon className='social-icon' fontSize="large"/>
+            </a>
+            <p>@honeymaria</p>
+          </div>
+          <div className="icon-account">
+            <a href="#0" className="icon icon--twitter">
+              <TwitterIcon className='social-icon' fontSize="large"/>
+            </a>
+            <p>@honeymaria</p>
+          </div>
         </div>
         <Divider sx={{marginBottom:'10px'}}/>
         <span className='subtutilos-config'>Eliminar cuenta</span>

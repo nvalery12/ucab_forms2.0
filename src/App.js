@@ -8,6 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 //   Link
 // } from "react-router-dom";
 import CrearEncuesta from './componentes/CrearEncuesta/CrearEncuesta';
+import PreguntaMatriz from './componentes/CrearEncuesta/PreguntaMatriz';
 import VerEncuestas from './componentes/VerEncuestas/ListaEncuestas';
 import UserConfig from './componentes/Configuracion-User/UserConfig';
 import Header from './componentes/Header/Header';
@@ -26,15 +27,15 @@ export default function App() {
     },
     palette: {
       primary: {
-        light: '#579bb9',
-        main: '#2e83a8',
-        dark: '#205b75',
+        light: '#66c3ea',
+        main: '#40b4e5',
+        dark: '#2c7da0',
         contrastText: '#fff',
       },
       secondary: {
         light: '#ffd051',
         main: '#ffc526',
-        dark: '#ffd051',
+        dark: '#b2891a',
         contrastText: '#000',
       },
     }
@@ -45,8 +46,8 @@ export default function App() {
         <ThemeProvider theme={theme}>
           {(currentUser?.email) ? (
             <div className="">
-              <Header />
-              <UserConfig/>
+              {/* <Header /> */}
+              <PreguntaMatriz/>
             </div>
           ) : (
             <Login/>

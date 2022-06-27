@@ -196,22 +196,23 @@ button:focus {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 2px solid #40b4e5;
+  border: none;
   margin: 0 auto;
-  padding-top: 3px;
-  color: #40b4e5;
-  background-color: white;
+  color: white;
+  background-color: #40b4e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .build-question .btnBuildQuestion:hover {
   cursor: pointer;
-  background-color: #e4e4e4;
+  background-color: #3ca4d0;
 }
 
 .build-question .btnBuildQuestion:active {
-  background-color: #cecece;
-  border: 2px solid #3594bc;
-  color: #3594bc;
+  background-color: #2f85aa;
+  color: #cecece;
 }
 
 .modal-question-matriz {
@@ -303,6 +304,29 @@ button:focus {
 }
 
 .modal-question-matriz .btnAdd:active{
+  background-color: #04652a;
+  color: rgb(223, 223, 223);
+}
+
+.ModalForm #btnSubmitModalMatriz {
+  display: flex;
+  align-items: center;
+  margin-left: 80%;
+  margin-top: 10px;
+  background-color: #047732;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+}
+
+.ModalForm #btnSubmitModalMatriz:hover {
+  cursor: pointer;
+  background-color: #046d2e;
+}
+
+.ModalForm #btnSubmitModalMatriz:active{
   background-color: #04652a;
   color: rgb(223, 223, 223);
 }

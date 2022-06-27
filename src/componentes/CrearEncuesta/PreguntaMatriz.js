@@ -19,8 +19,8 @@ import ModalMatriz from './CrearOpciones/ModalPreguntaMatriz';
 const PreguntaMatriz = () => {
   // const [RowInputTitle, setRowInputTitle] = useState([]);
   const [btnDisable, setBtnDisable] = useState(false);
-  const [divCount, setDivCount] = useState(0);
-  const [divRowCount, setRowDivCount] = useState(0);
+  const [divCount, setDivCount] = useState(1);
+  const [divRowCount, setRowDivCount] = useState(1);
 
   // const onAddBtnClick = event => {
   //   event.preventDefault();

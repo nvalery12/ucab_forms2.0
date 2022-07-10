@@ -1,0 +1,149 @@
+.sidebar-container {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: 'border-box';
+  background-color: white;
+}
+
+.sidebar-menu {
+  margin: 0px;
+  padding: 0px;
+  width: 140px;
+  background-color: #c9c9c9;
+  vertical-align: top;
+}
+
+.userConfig  {
+  margin: 20px 40px;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+}
+
+#titulo-config {
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0px;
+  color: #40b4e5;
+}
+
+.user-datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%/1, max(410px, 100%/2)), 1fr));
+}
+
+.Udatos {
+  display: grid;
+  width: 350px;
+  margin-bottom: 10px;
+}
+
+.Udatos > span {
+  font-size: 17px;
+}
+
+.user-data-input {
+  background-color: white;
+  border:2px solid #40b4e5;
+  border-radius: 5px;
+  height: 40px;
+  outline: none;
+  margin-top: 5px;
+  padding: 0px 10px;
+  font-size: 17px;
+}
+
+.subtutilos-config {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.text-eliminar > p {
+  font-size: 17px;
+  color: #5a5a5a;
+}
+
+.user-eliminarCuenta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-cuentasExternas {
+   display: grid;
+   row-gap: 20px;
+   font-size: 17px;
+}
+
+.icon-account {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 26px;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition-property: outline-offset, outline-color, background-color;
+  transition-duration: .25s;
+}
+
+.icon--instagram {
+  color: #a02d76;
+  outline: 2px solid #a02d76;
+}
+
+.icon--twitter {
+  color: #1da1f2;
+  outline: 2px solid #1da1f2;
+}
+
+.icon:hover {
+  outline-offset: 4px;
+  color: #fff;
+}
+
+.icon:hover .social-icon {
+  animation: shake .25s;
+}
+
+.icon--instagram:hover {
+  background-image: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);;
+  outline-color: #a02d76;
+}
+
+/* .icon--instagram:active {
+  background-image: radial-gradient(circle at 30% 107%, #7F7A4C 0%, #7F7A4C 5%, #7F2D25 45%, #6B1250 60%, #142D76 90%);;
+  outline-color: #50173B;
+} */
+
+
+.icon--twitter:hover {
+  color: white;
+  background-color: #1da1f2;
+  outline-color: #1da1f2;
+}
+
+@keyframes shake {
+  10%{transform: rotate(15deg);}
+  20%{transform: rotate(-15deg);}
+  30%{transform: rotate(15deg);}
+  40%{transform: rotate(-15deg);}
+}

@@ -1,0 +1,45 @@
+.header {
+  background-color: #22968C;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 77.9px;
+}
+
+.header img{
+  height: 41.5px;
+  margin-top: 9px;
+}
+
+.headerOption a{
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.headerUser button {
+  background-color: #22968C;
+  border: none;
+}
+
+#hamburger{
+  display: grid;
+  color: black;
+}
+
+.headerUser button:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  #menu-links {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  #hamburger {
+    display: none;
+  }
+}

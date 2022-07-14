@@ -2,7 +2,6 @@ import * as React from 'react';
 import './ListaEncuestas.css';
 import Ejemplo from '../../resources/ejemplo.jpg';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import Modal from '@mui/material/Modal';
@@ -30,7 +29,9 @@ export default function ListaEncuestas() {
   return (
     <div className="row">
       <div className="column">
-        <img className='form-picture' src={Ejemplo} alt='Ejemplo de ejemplo'/>
+        <button className='btnViewEncuesta'>
+          <img className='form-picture' src={Ejemplo} alt='Ejemplo de ejemplo'/>
+        </button>
         <div className="title-box">
           <span className='form-title'>Hello darknest my old friend</span>
           <IconButton className="info-btn" onClick={handleOpen}>
@@ -53,15 +54,6 @@ export default function ListaEncuestas() {
           </Modal>
         </div>
       </div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
     </div> 
   );
 }

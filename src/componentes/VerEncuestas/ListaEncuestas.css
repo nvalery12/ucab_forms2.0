@@ -11,7 +11,7 @@
   max-width: 100%;
   border-radius: 10px;
   background-color: white;
-  border-left: 11px solid #40b4e5;
+  
   box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -62,4 +62,12 @@
 
 @media screen and (max-width: 990px) {
   
+}
+
+.column:nth-child(odd) {
+  border-left: 11px solid #047732;
+}
+
+.column:nth-child(even) {
+  border-left: 11px solid #40b4e5;
 }

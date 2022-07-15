@@ -11,8 +11,10 @@ import CrearEncuesta from './componentes/CrearEncuesta/CrearEncuesta';
 import PreguntaMatriz from './componentes/CrearEncuesta/PreguntaMatriz';
 import VerEncuestas from './componentes/VerEncuestas/ListaEncuestas';
 import UserConfig from './componentes/Configuracion-User/UserConfig';
+import SolicitarCopia from './componentes/Mensaje-Final/SolicitarCopia';
 import Header from './componentes/Header/Header';
 import Login from './componentes/Login-Register/Login';
+import VerRespuesta from './componentes/VerRespuesta/VerRespuesta'
 
 
 export default function App() {
@@ -47,7 +49,7 @@ export default function App() {
           {(currentUser?.email) ? (
             <div className="">
               <Header />
-              <CrearEncuesta />
+              <UserConfig />
             </div>
           ) : (
             <Login/>

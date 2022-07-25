@@ -6,6 +6,7 @@ import ucabguayana from "../../resources/ucab_guayana - Copy.jpg";
 import ucabinformatica from "../../resources/escuela-ING.JPG";
 import showpassword from "../../resources/show.png";
 import hidepassword from "../../resources/hide.png";
+import {logIn,signUp} from "../../api/auth"
 
 export default function Login() {
 
@@ -19,20 +20,18 @@ export default function Login() {
   async function handleSignup() {
 
     setLoading(true);
-    try {
-      await signup(emailRef.current.value, passwordRef.current.value);
-    } catch(e) {
-      alert(e);
+    let res= await signUp({email: emailRef.current.value,password: passwordRef.current.value});
+    if (!res.ok) {
+      alert(res.error);
     }
   }
 
   async function handleLogin() {
 
     setLoading(true);
-    try {
-      await login(emailRef.current.value, passwordRef.current.value);
-    } catch(e) {
-      alert(e);
+    let res= await logIn({email: emailRef.current.value,password: passwordRef.current.value});
+    if (!res.ok) {
+      alert(res.error);
     }
   }
 

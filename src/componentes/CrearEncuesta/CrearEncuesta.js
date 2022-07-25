@@ -8,14 +8,44 @@ import PreguntaLargaCorta from './PreguntaLargaCorta.js';
 import PreguntaSeleccion from './PreguntaSeleccion.js';
 import PreguntaMultimedia from './PreguntaMultimedia.js';
 import PreguntaFecha from './PreguntaFecha.js';
+import Restricciones from './RestriccionesEncuesta/Restricciones';
 import BCrearEncuesta from './btnCrearEncuesta';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import TextField from '@mui/material/TextField';import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Grid from '@mui/material/Grid';
+import Modal from '@mui/material/Modal';
+import { borderRadius } from '@mui/system';
+
+const style = {
+  overflowX: 'auto',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  bgcolor: '#efefef',
+  border: '2px solid #000',
+  boxShadow: 24,
+  width: '80%',
+  height: '90%',
+  borderRadius: '25px'
+};
 
 function CrearEncuesta(){
 
   const [listaPreguntas, setListaPreguntas] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = (e) => {
+    e.preventDefault();
+    setOpen(true);
+  };
+  const handleClose = (e) => {
+    e.preventDefault();
+    setOpen(false);
+  };
 
   const nuevaPregunta = (pregunta) => {
      setListaPreguntas([pregunta, ...listaPreguntas]);
@@ -96,7 +126,28 @@ function CrearEncuesta(){
         }
         <PreguntaForm nuevaPregunta = {nuevaPregunta}/>
         </div>
-        <BCrearEncuesta/>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="flex-end"
+          className='btnEncuesta'
+        >
+          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />}>
+            Borrar
+          </Button>
+          <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />}/>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="child-modal-title"
+            aria-describedby="child-modal-description"
+          >
+            <Box className="modal-question-matriz" sx={{ ...style, width: '80%' }}>
+              <Restricciones/>
+            </Box>
+          </Modal>
+        </Grid>
     </div>
   );
 }

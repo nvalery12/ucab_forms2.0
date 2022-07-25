@@ -8,10 +8,15 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 //   Link
 // } from "react-router-dom";
 import CrearEncuesta from './componentes/CrearEncuesta/CrearEncuesta';
+import PreguntaMatriz from './componentes/CrearEncuesta/PreguntaMatriz';
 import VerEncuestas from './componentes/VerEncuestas/ListaEncuestas';
 import UserConfig from './componentes/Configuracion-User/UserConfig';
+import SolicitarCopia from './componentes/Mensaje-Final/SolicitarCopia';
+import Restricciones from './componentes/CrearEncuesta/RestriccionesEncuesta/Restricciones';
 import Header from './componentes/Header/Header';
 import Login from './componentes/Login-Register/Login';
+import VerRespuesta from './componentes/VerRespuesta/VerRespuesta';
+import btnCrearEncuesta from './componentes/CrearEncuesta/btnCrearEncuesta';
 
 
 export default function App() {
@@ -26,15 +31,15 @@ export default function App() {
     },
     palette: {
       primary: {
-        light: '#579bb9',
-        main: '#2e83a8',
-        dark: '#205b75',
+        light: '#66c3ea',
+        main: '#40b4e5',
+        dark: '#2c7da0',
         contrastText: '#fff',
       },
       secondary: {
         light: '#ffd051',
         main: '#ffc526',
-        dark: '#ffd051',
+        dark: '#b2891a',
         contrastText: '#000',
       },
     }
@@ -46,7 +51,7 @@ export default function App() {
           {(currentUser?.email) ? (
             <div className="">
               <Header />
-              <CrearEncuesta/>
+              <CrearEncuesta />
             </div>
           ) : (
             <Login/>

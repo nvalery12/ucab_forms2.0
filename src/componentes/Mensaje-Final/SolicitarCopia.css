@@ -1,0 +1,44 @@
+.box-msg {
+  display: grid;
+  margin: 0 auto;
+  width: 55%;
+  margin-top: 30px;
+  border-left: 11px solid #047732;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.box-msg > h2 {
+  margin: 10px auto;
+}
+
+.box-msg > span {
+  margin: 10px 0px 0px 7px;
+}
+
+.box-msg > .containerChangeEmail {
+  display: flex;
+  margin: 10px 7px;
+}
+
+.box-msg > .containerChangeEmail > span {
+ margin-right: 8px;
+}
+
+.box-msg > .containerBtnEmail {
+  display: grid;
+  justify-content: flex-end;
+  margin: 10px 15px 15px 0px;
+}
+
+.box-msg > .containerBtnEmail > .btnSendCopy {
+  display: flex;
+  border: none;
+  width: 100px;
+  height: 35px;
+  font-size: 15px;
+  border-radius: px;
+  align-items: center;
+  justify-content: center;
+}

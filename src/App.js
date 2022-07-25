@@ -46,7 +46,7 @@ export default function App() {
           {(currentUser?.email) ? (
             <div className="">
               <Header />
-              <UserConfig/>
+              <CrearEncuesta/>
             </div>
           ) : (
             <Login/>

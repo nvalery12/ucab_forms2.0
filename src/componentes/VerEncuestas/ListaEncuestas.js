@@ -53,15 +53,15 @@ export default function ListaEncuestas() {
           </Modal>
         </div>
       </div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
-      <div className="column">Hola Mundo</div>
+      <div className="column"></div>
+      <div className="column"></div>
+      <div className="column"></div>
+      <div className="column"></div>
+      <div className="column"></div>
+      <div className="column"></div>
+      <div className="column"></div>
+      <div className="column"></div>
+      <div className="column"></div>
     </div> 
   );
 }

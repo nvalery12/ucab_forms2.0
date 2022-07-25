@@ -21,6 +21,8 @@ import { Navigate, Outlet, Route, Routes, BrowserRouter as Router } from "react-
 import AuthPage from './componentes/AuthPage';
 import UnAuthPage from './componentes/UnAuthPage';
 import {UserProvider} from './componentes/hooks/useUser';
+import {FormProvider} from './componentes/hooks/useForm';
+import ListaEncuestas from './componentes/VerEncuestas/ListaEncuestas';
 
 export default function App() {
 
@@ -74,10 +76,19 @@ export default function App() {
               element={
                 <>
                   <Header />
+                  <ListaEncuestas/>
                 </>
               }
             />
             </Route>
+            <Route
+              path="/forms/edit/:id"
+              element={
+                <FormProvider>
+                  <CrearEncuesta />
+                </FormProvider>
+              }
+            />
           </Routes>
           </Router>
         </UserProvider>

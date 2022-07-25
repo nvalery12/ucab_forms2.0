@@ -18,6 +18,8 @@ import SendIcon from '@mui/icons-material/Send';
 import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
 import { borderRadius } from '@mui/system';
+import { useUser } from '../hooks/useUser';
+import { useForm } from '../hooks/useForm';
 
 const style = {
   overflowX: 'auto',
@@ -34,6 +36,8 @@ const style = {
 };
 
 function CrearEncuesta(){
+  const user = useUser();
+  const { form, setForm, loading } = useForm();
 
   const [listaPreguntas, setListaPreguntas] = React.useState([]);
   const [open, setOpen] = React.useState(false);
@@ -108,13 +112,14 @@ function CrearEncuesta(){
         autoComplete="off"
         >
             <Stack spacing = {3}>
-                <TextField style = {{marginLeft: '2%'}}  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" InputProps={{ style: {width: '97%',fontSize: 40 } }} />
+                <TextField style = {{marginLeft: '2%'}}  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" value={form.title} InputProps={{ style: {width: '97%',fontSize: 40 } }} />
                 <TextField
                   style = {{marginLeft: '2%',width:"95%",marginBottom:'2%'}}
                   id="outlined-multiline-flexible"
                   label="Descripcion de la encuesta"
                   multiline
                   maxRows={4}
+                  value={form.description}
                 />
             </Stack>
         </Box>

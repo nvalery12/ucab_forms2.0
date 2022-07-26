@@ -76,7 +76,7 @@ export default function App() {
               element={
                 <>
                   <Header />
-                  <ListaEncuestas/>
+                  <VerEncuestas/>
                 </>
               }
             />
@@ -85,6 +85,7 @@ export default function App() {
               path="/forms/edit/:id"
               element={
                 <FormProvider>
+                  <Header/>
                   <CrearEncuesta />
                 </FormProvider>
               }

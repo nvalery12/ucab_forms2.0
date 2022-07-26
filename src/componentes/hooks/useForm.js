@@ -9,10 +9,8 @@ const useForm = () => {
 };
 
 const FormProvider = ({ children }) => {
-  const { id: formId } = useParams();
+  const { id: formId } = useParams()
   const [form, setForm] = useState(null);
-  const [questions, setQuestions] = useState([]);
-  const [responses, setResponses] = useState([]);
   const [current, setCurrent] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -33,9 +31,6 @@ const FormProvider = ({ children }) => {
   const value = {
     form,
     setForm,
-    questions,
-    setQuestions,
-    responses,
     loading,
     current,
     setCurrent,

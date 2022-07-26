@@ -1,5 +1,6 @@
 import React from 'react';
 import './CrearEncuesta.css';
+import {useMemo} from 'react';
 
 
 //import Pregunta from './Pregunta.js';
@@ -13,6 +14,7 @@ import BCrearEncuesta from './btnCrearEncuesta';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';import Button from '@mui/material/Button';
+import { LinearProgress } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Grid from '@mui/material/Grid';
@@ -20,6 +22,9 @@ import Modal from '@mui/material/Modal';
 import { borderRadius } from '@mui/system';
 import { useUser } from '../hooks/useUser';
 import { useForm } from '../hooks/useForm';
+import {deleteForm,saveForm} from '../../api/forms';
+import { useNavigate } from "react-router-dom";
+import debounce from "lodash.debounce";
 
 const style = {
   overflowX: 'auto',
@@ -38,6 +43,7 @@ const style = {
 function CrearEncuesta(){
   const user = useUser();
   const { form, setForm, loading } = useForm();
+  const navigate = useNavigate();
 
   const [listaPreguntas, setListaPreguntas] = React.useState([]);
   const [open, setOpen] = React.useState(false);
@@ -103,6 +109,33 @@ function CrearEncuesta(){
      }
    }
 
+   const handleDelete = () => {
+    deleteForm(form.id);
+    navigate("/dashboard");
+   }
+
+   const debouncedSave = useMemo(() => {
+    return debounce((form) => {
+      saveForm(form);
+    }, 1500);
+  }, []);
+
+  const handleChange = (field) => (e) => {
+    const value = e.target.value;
+    const newForm = { ...form, [field]: value };
+
+    debouncedSave(newForm);
+    setForm(newForm);
+  };
+
+   if (loading) {
+    return (
+      <Box>
+        <LinearProgress />
+      </Box>
+    );
+  }
+
   return(
     <div>
         <Box
@@ -112,7 +145,10 @@ function CrearEncuesta(){
         autoComplete="off"
         >
             <Stack spacing = {3}>
-                <TextField style = {{marginLeft: '2%'}}  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" value={form.title} InputProps={{ style: {width: '97%',fontSize: 40 } }} />
+                <TextField style = {{marginLeft: '2%'}}
+                  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" value={form.title} 
+                  InputProps={{ style: {width: '97%',fontSize: 40 } }} 
+                  onChange={handleChange("title")}/>
                 <TextField
                   style = {{marginLeft: '2%',width:"95%",marginBottom:'2%'}}
                   id="outlined-multiline-flexible"
@@ -120,6 +156,7 @@ function CrearEncuesta(){
                   multiline
                   maxRows={4}
                   value={form.description}
+                  onChange={handleChange("description")}
                 />
             </Stack>
         </Box>
@@ -138,7 +175,7 @@ function CrearEncuesta(){
           alignItems="flex-end"
           className='btnEncuesta'
         >
-          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />}>
+          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
             Borrar
           </Button>
           <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />}/>

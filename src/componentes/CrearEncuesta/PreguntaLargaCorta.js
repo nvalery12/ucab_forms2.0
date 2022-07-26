@@ -23,7 +23,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
+//import { styled } from '@mui/material/styles';
 
 function PreguntaLargaCorta(props){
 
@@ -38,6 +38,23 @@ function PreguntaLargaCorta(props){
   const borrarPregunta = () => {
     props.borrarPregunta(props.id);
   };
+
+  // const ColorBOX = styled(Box)(({theme}) =>({
+  //   boxSizing: "border-box",
+  //
+  //   position: "relative",
+  //   display: "block",
+  //   width: "1136px",
+  //   height: "auto",
+  //   marginLeft: "auto",
+  //   marginRight: "auto",
+  //   marginTop: "5%",
+  //
+  //   background: "#FFFFFF",
+  //   borderLeft: "11px solid #047732",
+  //   boxShadow: "5px 4px 0px rgba(0, 0, 0, 0.25)",
+  //   borderRadius: "20px",
+  // }))
 
   return (
     <div>

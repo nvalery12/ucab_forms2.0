@@ -32,7 +32,9 @@ export default function Header() {
     const formId = createForm(user);
     navigate("/forms/edit/" + formId);
   }
-
+  const handleDashboard = () => {
+    navigate('/dashboard');
+  }
   return (
     <div className="header">
       <div id="hamburger">
@@ -90,11 +92,14 @@ export default function Header() {
           )}
         </IconButton>
       </div>
-      <Logo/>
+      <Logo onClick={navigate("/dashboard")}/>
       <div id="menu-links">
-      <MenuItem onClick={handleCreate}>
-                  Crear encuesta
-                </MenuItem>
+      <MenuItem onClick={handleDashboard}>
+          Ver Encuestas
+        </MenuItem>
+        <MenuItem onClick={handleCreate}>
+          Crear encuesta
+        </MenuItem>
       </div>
       <User/>
     </div>

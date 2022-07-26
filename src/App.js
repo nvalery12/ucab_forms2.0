@@ -51,48 +51,50 @@ export default function App() {
 
   return (
       <div className="App">
-        <UserProvider>
-          <Router>
-          <Routes>
-            <Route path="/" element={<Navigate to="/login" replace />} />
-            <Route
-            element={
-              <UnAuthPage>
-                <Outlet />
-              </UnAuthPage>
-            }
-          >
-            <Route path="/login" element={<Login/>} />
-          </Route>
-          <Route
-            element={
-              <AuthPage>
-                <Outlet />
-              </AuthPage>
-            }
-          >
-            <Route
-              path="/dashboard"
+        <ThemeProvider theme={theme}>
+          <UserProvider>
+            <Router>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" replace />} />
+              <Route
               element={
-                <>
-                  <Header />
-                  <VerEncuestas/>
-                </>
+                <UnAuthPage>
+                  <Outlet />
+                </UnAuthPage>
               }
-            />
+            >
+              <Route path="/login" element={<Login/>} />
             </Route>
             <Route
-              path="/forms/edit/:id"
               element={
-                <FormProvider>
-                  <Header/>
-                  <CrearEncuesta />
-                </FormProvider>
+                <AuthPage>
+                  <Outlet />
+                </AuthPage>
               }
-            />
-          </Routes>
-          </Router>
-        </UserProvider>
+            >
+              <Route
+                path="/dashboard"
+                element={
+                  <>
+                    <Header />
+                    <VerEncuestas/>
+                  </>
+                }
+              />
+              </Route>
+              <Route
+                path="/forms/edit/:id"
+                element={
+                  <FormProvider>
+                    <Header/>
+                    <CrearEncuesta />
+                  </FormProvider>
+                }
+              />
+            </Routes>
+            </Router>
+          </UserProvider>
+        </ThemeProvider>
       </div>
   );
 }

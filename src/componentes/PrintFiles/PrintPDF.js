@@ -20,19 +20,21 @@ export default class Export extends Component {
   }
 
   render() {
-    return (<div>
-      <div className="mb5">
-        <button onClick={this.printDocument}>Imprimir</button>
+    return (
+      <div>
+        <div id="divToPrint" className="mt4" sx={{
+          backgroundColor: '#f5f5f5',
+          width: '210mm',
+          minHeight: '297mm',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}>
+          <div>Aserejé-ja-de jé<br/>De jebe tu de jebere seibiunouva majavi an de bugui an de güididípi</div> {/*AQUI SE PONE EL COMPONENTE A IMPRIMIR*/}
+        </div>
+        <div className="mb5">
+          <button onClick={this.printDocument}>Imprimir</button>
+        </div>
       </div>
-      <div id="divToPrint" className="mt4" sx={{
-        backgroundColor: '#f5f5f5',
-        width: '210mm',
-        minHeight: '297mm',
-        marginLeft: 'auto',
-        marginRight: 'auto'
-      }}>
-        <div><Post/></div> {/*AQUI SE PONE EL COMPONENTE A IMPRIMIR*/}
-      </div>
-    </div>);
+    );
   }
 }

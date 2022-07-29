@@ -13,6 +13,7 @@ import VerEncuestas from './componentes/VerEncuestas/ListaEncuestas';
 import UserConfig from './componentes/Configuracion-User/UserConfig';
 import SolicitarCopia from './componentes/Mensaje-Final/SolicitarCopia';
 import Restricciones from './componentes/CrearEncuesta/RestriccionesEncuesta/Restricciones';
+import ResponderEncuestas from './componentes/ResponderEncuesta/ResponderEncuesta';
 import Header from './componentes/Header/Header';
 import Login from './componentes/Login-Register/Login';
 import VerRespuesta from './componentes/VerRespuesta/VerRespuesta';

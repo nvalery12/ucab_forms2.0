@@ -1,0 +1,73 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%/1, max(250px, 100%/5)), 1fr));
+}
+
+.column {
+  display: grid;
+  margin: 20px auto;
+  width: 240px;
+  height: 240px;
+  max-width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  
+  box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.column .form-picture {
+  width: 229.5px;
+  height: 200px;
+  border-radius: 0px 10px 0px 0px;
+}
+
+.column .btnViewEncuesta {
+  border: none;
+  width: 229.5px;
+  height: 200px;
+  border-radius: 0px 10px 0px 0px;
+}
+
+.column .btnViewEncuesta:hover {
+  content: " ";
+  cursor: pointer;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.title-box {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.column .form-title {
+  width: 189px;
+  font-size: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0 5px;
+  color: #12100c;
+}
+
+.info-icon {
+  color: #12100c;
+}
+
+.info-btn {
+  height: 30px;
+  width: 30px;
+}
+
+@media screen and (max-width: 990px) {
+  
+}
+
+.column:nth-child(odd) {
+  border-left: 11px solid #047732;
+}
+
+.column:nth-child(even) {
+  border-left: 11px solid #40b4e5;
+}

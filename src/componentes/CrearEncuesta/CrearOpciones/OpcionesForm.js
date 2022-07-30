@@ -26,7 +26,8 @@ function OpcionesForm(props){
 
   const submit = (event) => {
     event.preventDefault();
-    props.nuevaOpciones(inputText);
+    if (inputText !== "")
+      props.nuevaOpciones(inputText);
     setInputText("");
   };
 

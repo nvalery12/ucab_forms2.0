@@ -51,6 +51,7 @@ function CrearEncuesta(){
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(true);
+    console.log(listaPreguntas);
   };
   const handleClose = (e) => {
     e.preventDefault();
@@ -59,7 +60,19 @@ function CrearEncuesta(){
 
   const nuevaPregunta = (pregunta) => {
      setListaPreguntas([pregunta, ...listaPreguntas]);
+     //console.log(listaPreguntas);
    };
+
+   const cambiarPregunta = (id,newQuestion) =>{
+     console.log(newQuestion);
+     const cambioPregunta = listaPreguntas.filter((e,index) =>{
+       if (index === id){
+         e.tipo_pregunta = newQuestion
+       }
+       return e
+     });
+     setListaPreguntas(cambioPregunta)
+   }
 
    const borrarPregunta = (id) => {
      const listaFiltrada = listaPreguntas.filter((e, index) => index !== id);
@@ -67,42 +80,49 @@ function CrearEncuesta(){
    };
 
    const select_type_answer = (pregunta,index) =>{
+     console.log(pregunta.titulo_pregunta);
      switch (pregunta.tipo_pregunta) {
        case "Respuesta Corta":
          return <PreguntaLargaCorta
                   pregunta={pregunta}
                   borrarPregunta={borrarPregunta}
                   id={index}
+                  cambiarPregunta={cambiarPregunta}
                  />
         case "Respuesta Larga":
           return <PreguntaLargaCorta
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
                    id={index}
+                   cambiarPregunta={cambiarPregunta}
                   />
         case "Selección simple":
           return <PreguntaSeleccion
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
                    id={index}
+                   cambiarPregunta={cambiarPregunta}
                   />
         case "Selección multiple":
           return <PreguntaSeleccion
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
                    id={index}
+                   cambiarPregunta={cambiarPregunta}
                   />
         case  "Fecha":
           return <PreguntaFecha
                     pregunta={pregunta}
                     borrarPregunta={borrarPregunta}
                     id={index}
+                    cambiarPregunta={cambiarPregunta}
                    />
         case "Multimedia":
           return <PreguntaMultimedia
                     pregunta={pregunta}
                     borrarPregunta={borrarPregunta}
                     id={index}
+                    cambiarPregunta={cambiarPregunta}
                    />
        default:
          console.log("Nothing");
@@ -146,8 +166,8 @@ function CrearEncuesta(){
         >
             <Stack spacing = {3}>
                 <TextField style = {{marginLeft: '2%'}}
-                  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" value={form.title} 
-                  InputProps={{ style: {width: '97%',fontSize: 40 } }} 
+                  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" value={form.title}
+                  InputProps={{ style: {width: '97%',fontSize: 40 } }}
                   onChange={handleChange("title")}/>
                 <TextField
                   style = {{marginLeft: '2%',width:"95%",marginBottom:'2%'}}
@@ -166,7 +186,7 @@ function CrearEncuesta(){
             select_type_answer(pregunta,index)
           ))
         }
-        <PreguntaForm nuevaPregunta = {nuevaPregunta}/>
+        <PreguntaForm idPregunta = {listaPreguntas.length} nuevaPregunta = {nuevaPregunta}/>
         </div>
         <Grid
           container
@@ -178,7 +198,8 @@ function CrearEncuesta(){
           <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
             Borrar
           </Button>
-          <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />}/>
+          <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />
+          }/>
           <Modal
             open={open}
             onClose={handleClose}

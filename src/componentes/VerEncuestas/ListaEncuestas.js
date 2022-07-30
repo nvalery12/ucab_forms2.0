@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from "react-router-dom";
 import { deleteForm, getUserForms, getCollaborationForms } from '../../api/forms';
 import { useUser } from '../hooks/useUser';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 const style = {
   position: 'absolute',
@@ -38,6 +39,7 @@ export default function ListaEncuestas() {
 
     useEffect(() => {
       const unsubscribeUserForms = getUserForms(user.id, (forms) => {
+        
         setUserForms(forms);
         setLoadingUserForms(false);
       });
@@ -47,37 +49,59 @@ export default function ListaEncuestas() {
       };
     }, [user]);
 
-    
 
+  const handleEdit = (id) => {
+    navigate("/forms/edit/" + id);
+  }
+
+    
+    
+    
+    if (loadingUserForms) {
+      return (
+        <div className='spinner'></div>
+      )      
+    }
+
+    const formularios = () =>{
+      let encuestas = [];
+      for (let i = 0; i < userForms.length; i++) {  
+        let form = userForms[i];
+        encuestas.push(<div className="column" id={i}>
+          <button className='btnViewEncuesta' >
+            <img className='form-picture' src={Ejemplo} alt='Ejemplo de ejemplo'/>
+          </button>
+          <div className="title-box" >
+            <span className='form-title'>{form.title}</span>
+            <IconButton className="info-btn" onClick={handleOpen}>
+              <InfoIcon className='info-icon'/>
+            </IconButton>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  {form.title}
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Descripcion: {form.description}<br/>Fecha creada: {form.createAt}<br/>Numero de respuestas: {form.responses}
+                </Typography>
+              </Box>
+            </Modal>
+          </div>
+        </div>)
+      }
+      return encuestas;
+    };
 
   return (
-    <div className="row">
-      <div className="column">
-        <button className='btnViewEncuesta'>
-          <img className='form-picture' src={Ejemplo} alt='Ejemplo de ejemplo'/>
-        </button>
-        <div className="title-box">
-          <span className='form-title'>{userForms.title}</span>
-          <IconButton className="info-btn" onClick={handleOpen}>
-            <InfoIcon className='info-icon'/>
-          </IconButton>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Titulo de la encuesta
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Descripcion<br/>Fecha creada<br/>Numero de respuestas
-              </Typography>
-            </Box>
-          </Modal>
-        </div>
-      </div>
-    </div> 
+    <div className='row'>
+      {
+        formularios()
+      }
+    </div>
   );
 }

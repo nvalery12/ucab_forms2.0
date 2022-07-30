@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './ListaEncuestas.css';
 import Ejemplo from '../../resources/ejemplo.jpg';
 import Box from '@mui/material/Box';
@@ -6,6 +6,9 @@ import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from "react-router-dom";
+import { deleteForm, getUserForms, getCollaborationForms } from '../../api/forms';
+import { useUser } from '../hooks/useUser';
 
 const style = {
   position: 'absolute',
@@ -22,9 +25,30 @@ const style = {
 
 
 export default function ListaEncuestas() {
-  const [open, setOpen] = React.useState(false);
+  const user = useUser();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [userForms, setUserForms] = useState([]);
+  const [collaborationForms, setCollaborationForms] = useState([]);
+  const [loadingUserForms, setLoadingUserForms] = useState(true);
+  const [loadingCollaborationForms, setLoadingCollaborationForms] =
+    useState(true);
+
+    useEffect(() => {
+      const unsubscribeUserForms = getUserForms(user.id, (forms) => {
+        setUserForms(forms);
+        setLoadingUserForms(false);
+      });
+  
+      return () => {
+        unsubscribeUserForms();
+      };
+    }, [user]);
+
+    
+
 
   return (
     <div className="row">
@@ -33,7 +57,7 @@ export default function ListaEncuestas() {
           <img className='form-picture' src={Ejemplo} alt='Ejemplo de ejemplo'/>
         </button>
         <div className="title-box">
-          <span className='form-title'>Hello darknest my old friend</span>
+          <span className='form-title'>{userForms.title}</span>
           <IconButton className="info-btn" onClick={handleOpen}>
             <InfoIcon className='info-icon'/>
           </IconButton>

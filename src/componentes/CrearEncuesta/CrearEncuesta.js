@@ -25,6 +25,7 @@ import { useForm } from '../hooks/useForm';
 import {deleteForm,saveForm} from '../../api/forms';
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
+import { deleteQuestion, insertQuestion } from '../../api/questions';
 
 const style = {
   overflowX: 'auto',
@@ -42,11 +43,13 @@ const style = {
 
 function CrearEncuesta(){
   const user = useUser();
-  const { form, setForm, loading } = useForm();
+  const { form, setForm, questions, setQuestions, loading } = useForm();
   const navigate = useNavigate();
 
   const [listaPreguntas, setListaPreguntas] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+
+  
 
   const handleOpen = (e) => {
     e.preventDefault();
@@ -60,6 +63,8 @@ function CrearEncuesta(){
 
   const nuevaPregunta = (pregunta) => {
      setListaPreguntas([pregunta, ...listaPreguntas]);
+     const newQuestion = {index: pregunta.id, type: pregunta.tipo_pregunta};
+     pregunta.idDB = insertQuestion(form.id, newQuestion);
      //console.log(listaPreguntas);
    };
 
@@ -74,8 +79,9 @@ function CrearEncuesta(){
      setListaPreguntas(cambioPregunta)
    }
 
-   const borrarPregunta = (id) => {
-     const listaFiltrada = listaPreguntas.filter((e, index) => index !== id);
+   const borrarPregunta = (pregunta) => {
+     const listaFiltrada = listaPreguntas.filter((e, index) => index !== pregunta.id);
+     deleteQuestion(form.id,pregunta.idDB);
      setListaPreguntas(listaFiltrada);
    };
 

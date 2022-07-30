@@ -31,7 +31,7 @@ function PreguntaForm(props){
     //console.log(event.currentTarget.id);
     console.log(props.idPreguntas);
     if (event.currentTarget.id !== undefined){
-      props.nuevaPregunta({id: props.idPregunta, tipo_pregunta: event.currentTarget.id, titulo_pregunta: ""});
+      props.nuevaPregunta({id: props.idPregunta, tipo_pregunta: event.currentTarget.id, titulo_pregunta: "", idDB:""});
     }
     setOpenModal(false)
   };

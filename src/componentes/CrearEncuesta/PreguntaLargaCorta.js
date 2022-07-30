@@ -41,7 +41,7 @@ function PreguntaLargaCorta(props){
   }
 
   const borrarPregunta = () => {
-    props.borrarPregunta(props.id);
+    props.borrarPregunta(props.pregunta);
   };
 
   const handleInput = (event) =>{

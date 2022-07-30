@@ -12,8 +12,11 @@ import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import { useUser } from '../../hooks/useUser';
 
 export default function User() {
+  const user = useUser();
+
 
   async function handleLogout() {
     try {
@@ -84,7 +87,7 @@ export default function User() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Cuenta
+          <Avatar /> {user.email}
         </MenuItem>
         <Divider />
         <MenuItem>

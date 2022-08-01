@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  initializeFirestore,
+  CACHE_SIZE_UNLIMITED,
+  enableMultiTabIndexedDbPersistence,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB6fVrI4RIZjDyeA6ErptqMv6FLeg6isew",
@@ -39,3 +44,8 @@ export function useAuth() {
 
   return currentUser;
 }
+
+const db = initializeFirestore(app, { cacheSizeBytes: CACHE_SIZE_UNLIMITED });
+enableMultiTabIndexedDbPersistence(db);
+
+export {auth,db}

@@ -13,14 +13,19 @@ import VerEncuestas from './componentes/VerEncuestas/ListaEncuestas';
 import UserConfig from './componentes/Configuracion-User/UserConfig';
 import SolicitarCopia from './componentes/Mensaje-Final/SolicitarCopia';
 import Restricciones from './componentes/CrearEncuesta/RestriccionesEncuesta/Restricciones';
+import ResponderEncuestas from './componentes/ResponderEncuesta/ResponderEncuesta';
 import Header from './componentes/Header/Header';
 import Login from './componentes/Login-Register/Login';
 import VerRespuesta from './componentes/VerRespuesta/VerRespuesta';
 import btnCrearEncuesta from './componentes/CrearEncuesta/btnCrearEncuesta';
-
+import { Navigate, Outlet, Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import AuthPage from './componentes/AuthPage';
+import UnAuthPage from './componentes/UnAuthPage';
+import {UserProvider} from './componentes/hooks/useUser';
+import {FormProvider} from './componentes/hooks/useForm';
+import ListaEncuestas from './componentes/VerEncuestas/ListaEncuestas';
 
 export default function App() {
-  const currentUser = useAuth();
 
   const theme = createTheme( {
     typography: {
@@ -48,14 +53,48 @@ export default function App() {
   return (
       <div className="App">
         <ThemeProvider theme={theme}>
-          {(currentUser?.email) ? (
-            <div className="">
-              <Header />
-              <CrearEncuesta />
-            </div>
-          ) : (
-            <Login/>
-          )}
+          <UserProvider>
+            <Router>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" replace />} />
+              <Route
+              element={
+                <UnAuthPage>
+                  <Outlet />
+                </UnAuthPage>
+              }
+            >
+              <Route path="/login" element={<Login/>} />
+            </Route>
+            <Route
+              element={
+                <AuthPage>
+                  <Outlet />
+                </AuthPage>
+              }
+            >
+              <Route
+                path="/dashboard"
+                element={
+                  <>
+                    <Header />
+                    <VerEncuestas/>
+                  </>
+                }
+              />
+              </Route>
+              <Route
+                path="/forms/edit/:id"
+                element={
+                  <FormProvider>
+                    <Header/>
+                    <CrearEncuesta />
+                  </FormProvider>
+                }
+              />
+            </Routes>
+            </Router>
+          </UserProvider>
         </ThemeProvider>
       </div>
   );

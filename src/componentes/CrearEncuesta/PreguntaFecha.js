@@ -52,7 +52,7 @@ function PreguntaFecha(props){
   }
 
   const borrarPregunta = () => {
-    props.borrarPregunta(props.id);
+    props.borrarPregunta(props.pregunta);
   };
 
   return (

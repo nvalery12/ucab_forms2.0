@@ -1,0 +1,31 @@
+.boxResponder {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 70%;
+    height: auto;
+    margin: 30px auto;
+    background: #FFFFFF;
+    box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.DescripcionPregunta {
+    margin-bottom: 10px;
+    margin-left: -5px;
+}
+
+.question:nth-child(odd) {
+    border-left: 11px solid #047732;
+    color: #047732;
+}
+
+.question:nth-child(even) {
+    border-left: 11px solid #40b4e5;
+    color: #40b4e5;
+}
+
+.charts {
+    margin: 0 auto;
+}

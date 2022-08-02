@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CrearEncuesta.css';
 import {useMemo} from 'react';
 
@@ -45,8 +45,9 @@ function CrearEncuesta(){
   const user = useUser();
   const { form, setForm, questions, setQuestions, loading } = useForm();
   const navigate = useNavigate();
+  const {listaPregunta,setListaPregunta} = useState([]);
 
-  const [listaPreguntas, setListaPreguntas] = React.useState([]);
+  
   const [open, setOpen] = React.useState(false);
 
   
@@ -54,7 +55,7 @@ function CrearEncuesta(){
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(true);
-    console.log(listaPreguntas);
+    console.log(questions);
   };
   const handleClose = (e) => {
     e.preventDefault();
@@ -62,32 +63,31 @@ function CrearEncuesta(){
   };
 
   const nuevaPregunta = (pregunta) => {
-     setListaPreguntas([pregunta, ...listaPreguntas]);
-     const newQuestion = {index: pregunta.id, type: pregunta.tipo_pregunta};
-     pregunta.idDB = insertQuestion(form.id, newQuestion);
+     const newQuestion = {index: pregunta.index, type: pregunta.tipo_pregunta, title: ""};
+     pregunta.id = insertQuestion(form.id, newQuestion);
      //console.log(listaPreguntas);
    };
 
    const cambiarPregunta = (id,newQuestion) =>{
      console.log(newQuestion);
-     const cambioPregunta = listaPreguntas.filter((e,index) =>{
+     const cambioPregunta = questions.filter((e,index) =>{
        if (index === id){
          e.tipo_pregunta = newQuestion
        }
        return e
      });
-     setListaPreguntas(cambioPregunta)
+     setQuestions(cambioPregunta);
    }
 
    const borrarPregunta = (pregunta) => {
-     const listaFiltrada = listaPreguntas.filter((e, index) => index !== pregunta.id);
+     const listaFiltrada = questions.filter((e, index) => index !== pregunta.id);
      deleteQuestion(form.id,pregunta.idDB);
-     setListaPreguntas(listaFiltrada);
+     setQuestions(listaFiltrada);
    };
 
    const select_type_answer = (pregunta,index) =>{
      console.log(pregunta.titulo_pregunta);
-     switch (pregunta.tipo_pregunta) {
+     switch (pregunta.type) {
        case "Respuesta Corta":
          return <PreguntaLargaCorta
                   pregunta={pregunta}
@@ -132,6 +132,7 @@ function CrearEncuesta(){
                    />
        default:
          console.log("Nothing");
+         console.log(pregunta);
      }
    }
 
@@ -162,6 +163,15 @@ function CrearEncuesta(){
     );
   }
 
+  if (questions.onChange) {
+    setListaPregunta = [];
+    for (let i = 0; i < questions.length; i++) {
+      const e = questions[i];
+      setListaPregunta(e,...listaPregunta);
+
+    }
+  }
+
   return(
     <div>
         <Box
@@ -188,11 +198,11 @@ function CrearEncuesta(){
         </Box>
         <div>
         {
-          listaPreguntas.map((pregunta,index) =>(
+          questions.map((pregunta,index) =>(
             select_type_answer(pregunta,index)
           ))
         }
-        <PreguntaForm idPregunta = {listaPreguntas.length} nuevaPregunta = {nuevaPregunta}/>
+        <PreguntaForm idPregunta = {questions.length} nuevaPregunta = {nuevaPregunta}/>
         </div>
         <Grid
           container

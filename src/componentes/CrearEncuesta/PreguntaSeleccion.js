@@ -46,15 +46,20 @@ function PreguntaSeleccion(props){
     props.borrarPregunta(props.id);
   };
 
-  const [listaOpciones, setListaOpciones] = React.useState([]);
+  const [listaOpciones, setListaOpciones] = React.useState(props.pregunta.opciones);
 
   const nuevaOpciones = (opcion) => {
      setListaOpciones([opcion, ...listaOpciones]);
+     console.log(listaOpciones);
+     props.pregunta.opciones = listaOpciones;
+    saveQuestion(props.form,props.pregunta);
    };
 
    const borrarOpcion = (id) => {
      const listaFiltrada = listaOpciones.filter((e, index) => index !== id);
      setListaOpciones(listaFiltrada);
+     props.pregunta.opciones = listaOpciones;
+    saveQuestion(props.form,props.pregunta);
    };
 
    const handleInput = (event) =>{

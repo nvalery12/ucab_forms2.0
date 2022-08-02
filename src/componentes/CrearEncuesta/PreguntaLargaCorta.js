@@ -35,9 +35,19 @@ function PreguntaLargaCorta(props){
 
   const handleCloseModal = () => setOpenModal(false);
 
+  const cambiarPregunta = (event ) =>{
+    props.cambiarPregunta(props.id,event.currentTarget.id)
+    handleCloseModal()
+  }
+
   const borrarPregunta = () => {
-    props.borrarPregunta(props.id);
+    props.borrarPregunta(props.pregunta);
   };
+
+  const handleInput = (event) =>{
+    //setTitulo(event.target.value)
+    props.pregunta.titulo_pregunta = event.target.value
+  }
 
   return (
     <div>
@@ -57,7 +67,7 @@ function PreguntaLargaCorta(props){
               alignItems="center"
               className = "questionTitle"
             >
-              <p className = "type_answer">{props.pregunta.tipo_pregunta}</p> 
+              <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
               <IconButton sx = {{position:'absolute',right: '5%',color: "#fff"}} onClick = {handleOpenModal}>
                   <BuildCircleIcon fontSize="large" sx = {{color: "#ffc526"}}/>
                 </IconButton>
@@ -70,9 +80,10 @@ function PreguntaLargaCorta(props){
                 id="filled-required"
                 label="Titulo de la pregunta"
                 defaultValue=""
-                style = {{width: '97%', marginLeft:'10px'}} 
+                style = {{width: '97%', marginLeft:'10px'}}
                 size="small"
                 variant="filled"
+                onChange = {handleInput}
               />
               <TextField
                 style = {{marginLeft: '2%',marginBottom:'2%'}}
@@ -108,13 +119,13 @@ function PreguntaLargaCorta(props){
                   </ListSubheader>
                 }
               >
-              <ListItemButton onClick = {handleCloseModal}>
+              <ListItemButton id = "Selección simple" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <RadioButtonCheckedIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Selección simple"/>
               </ListItemButton>
-              <ListItemButton onClick = {handleCloseModal}>
+              <ListItemButton id = "Selección multiple" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <CheckBoxIcon/>
                 </ListItemIcon>
@@ -126,21 +137,21 @@ function PreguntaLargaCorta(props){
               </ListItemButton>
               <Collapse in={openDespliegue} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }} onClick = {handleCloseModal}>
+                  <ListItemButton id = "Respuesta Corta" onClick = {cambiarPregunta} sx={{ pl: 4 }}>
                     <ListItemText primary="Respuesta Corta" />
                   </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }} onClick = {handleCloseModal}>
+                  <ListItemButton id = "Respuesta Larga" onClick = {cambiarPregunta} sx={{ pl: 4 }}>
                     <ListItemText primary="Respuesta Larga" />
                   </ListItemButton>
                 </List>
               </Collapse>
-              <ListItemButton onClick = {handleCloseModal}>
+              <ListItemButton id = "Fecha" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <DateRangeIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Fecha"/>
               </ListItemButton>
-              <ListItemButton onClick = {handleCloseModal}>
+              <ListItemButton id = "Multimedia" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <ImageIcon/>
                 </ListItemIcon>

@@ -26,12 +26,7 @@ const Loading = () => {
         p: 2,
       }}
     >
-      <Box
-        component="img"
-        // src={logo}
-        alt="logo"
-        sx={{ width: "100%", maxWidth: "md" }}
-      />
+      <div className='spinner'></div>
     </Box>
   );
 };

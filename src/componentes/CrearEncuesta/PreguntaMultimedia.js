@@ -34,6 +34,16 @@ function PreguntaMultimedia(props){
 
   const handleCloseModal = () => setOpenModal(false);
 
+  const cambiarPregunta = (event ) =>{
+    props.cambiarPregunta(props.id,event.currentTarget.id)
+    handleCloseModal()
+  }
+
+  const handleInput = (event) =>{
+    //setTitulo(event.target.value)
+    props.pregunta.titulo_pregunta = event.target.value
+  }
+
   const borrarPregunta = () => {
     props.borrarPregunta(props.id);
   };
@@ -63,17 +73,18 @@ function PreguntaMultimedia(props){
                   <CancelIcon fontSize="large" sx = {{color: "#ffc526"}}/>
                 </IconButton>
             </Grid>
-              
+
               <TextField
                 required
                 id="filled-required"
                 label="Titulo de la pregunta"
                 defaultValue=""
-                style = {{width: '97%', marginLeft:'10px'}} 
+                style = {{width: '97%', marginLeft:'10px'}}
                 size="small"
                 variant="filled"
+                onChange = {handleInput}
               />
-              
+
               <div style = {{textAlign: 'center'}}>
                 <input style = {{fontSize: '20px'}} accept = "image/*" type = "file" placeholder = "insertar imagen" id = "adjuntar imagen"/>
               </div>
@@ -101,13 +112,13 @@ function PreguntaMultimedia(props){
                   </ListSubheader>
                 }
               >
-              <ListItemButton>
+              <ListItemButton id = "Selección simple" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <RadioButtonCheckedIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Selección simple"/>
               </ListItemButton>
-              <ListItemButton>
+              <ListItemButton id = "Selección multiple" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <CheckBoxIcon/>
                 </ListItemIcon>
@@ -119,21 +130,21 @@ function PreguntaMultimedia(props){
               </ListItemButton>
               <Collapse in={openDespliegue} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemButton id = "Respuesta Corta" onClick = {cambiarPregunta} sx={{ pl: 4 }}>
                     <ListItemText primary="Respuesta Corta" />
                   </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemButton id = "Respuesta Larga" onClick = {cambiarPregunta} sx={{ pl: 4 }}>
                     <ListItemText primary="Respuesta Larga" />
                   </ListItemButton>
                 </List>
               </Collapse>
-              <ListItemButton>
+              <ListItemButton id = "Fecha" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <DateRangeIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Fecha"/>
               </ListItemButton>
-              <ListItemButton>
+              <ListItemButton id = "Multimedia" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <ImageIcon/>
                 </ListItemIcon>

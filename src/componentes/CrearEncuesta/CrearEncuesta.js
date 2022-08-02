@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CrearEncuesta.css';
 import {useMemo} from 'react';
 
@@ -25,6 +25,7 @@ import { useForm } from '../hooks/useForm';
 import {deleteForm,saveForm} from '../../api/forms';
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
+import { deleteQuestion, insertQuestion } from '../../api/questions';
 
 const style = {
   overflowX: 'auto',
@@ -42,15 +43,18 @@ const style = {
 
 function CrearEncuesta(){
   const user = useUser();
-  const { form, setForm, loading } = useForm();
+  const { form, setForm, questions, setQuestions, loading } = useForm();
   const navigate = useNavigate();
 
-  const [listaPreguntas, setListaPreguntas] = React.useState([]);
+  
   const [open, setOpen] = React.useState(false);
+
+  
 
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(true);
+    console.log(questions);
   };
   const handleClose = (e) => {
     e.preventDefault();
@@ -58,54 +62,73 @@ function CrearEncuesta(){
   };
 
   const nuevaPregunta = (pregunta) => {
-     setListaPreguntas([pregunta, ...listaPreguntas]);
+     const newQuestion = {index: pregunta.index, type: pregunta.tipo_pregunta, title: ""};
+     pregunta.id = insertQuestion(form.id, newQuestion);
+     //console.log(listaPreguntas);
    };
 
-   const borrarPregunta = (id) => {
-     const listaFiltrada = listaPreguntas.filter((e, index) => index !== id);
-     setListaPreguntas(listaFiltrada);
+   const cambiarPregunta = (id,newQuestion) =>{
+     console.log(newQuestion);
+     const cambioPregunta = questions.filter((e,index) =>{
+       if (index === id){
+         e.tipo_pregunta = newQuestion
+       }
+       return e
+     });
+     setQuestions(cambioPregunta);
+   }
+
+   const borrarPregunta = (pregunta) => {
+     deleteQuestion(form.id,pregunta.id);
    };
 
    const select_type_answer = (pregunta,index) =>{
-     switch (pregunta.tipo_pregunta) {
+     switch (pregunta.type) {
        case "Respuesta Corta":
          return <PreguntaLargaCorta
                   pregunta={pregunta}
                   borrarPregunta={borrarPregunta}
-                  id={index}
+                  id={pregunta.id}
+                  cambiarPregunta={cambiarPregunta}
                  />
         case "Respuesta Larga":
           return <PreguntaLargaCorta
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
-                   id={index}
+                   id={pregunta.id}
+                   cambiarPregunta={cambiarPregunta}
                   />
         case "Selección simple":
           return <PreguntaSeleccion
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
-                   id={index}
+                   id={pregunta.id}
+                   cambiarPregunta={cambiarPregunta}
                   />
         case "Selección multiple":
           return <PreguntaSeleccion
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
-                   id={index}
+                   id={pregunta.id}
+                   cambiarPregunta={cambiarPregunta}
                   />
         case  "Fecha":
           return <PreguntaFecha
                     pregunta={pregunta}
                     borrarPregunta={borrarPregunta}
-                    id={index}
+                    id={pregunta.id}
+                    cambiarPregunta={cambiarPregunta}
                    />
         case "Multimedia":
           return <PreguntaMultimedia
                     pregunta={pregunta}
                     borrarPregunta={borrarPregunta}
-                    id={index}
+                    id={pregunta.id}
+                    cambiarPregunta={cambiarPregunta}
                    />
        default:
          console.log("Nothing");
+         console.log(pregunta);
      }
    }
 
@@ -136,6 +159,7 @@ function CrearEncuesta(){
     );
   }
 
+
   return(
     <div>
         <Box
@@ -146,8 +170,8 @@ function CrearEncuesta(){
         >
             <Stack spacing = {3}>
                 <TextField style = {{marginLeft: '2%'}}
-                  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" value={form.title} 
-                  InputProps={{ style: {width: '97%',fontSize: 40 } }} 
+                  id="title_encuesta" label="Titulo de la Encuesta" variant="standard" value={form.title}
+                  InputProps={{ style: {width: '97%',fontSize: 40 } }}
                   onChange={handleChange("title")}/>
                 <TextField
                   style = {{marginLeft: '2%',width:"95%",marginBottom:'2%'}}
@@ -162,11 +186,11 @@ function CrearEncuesta(){
         </Box>
         <div>
         {
-          listaPreguntas.map((pregunta,index) =>(
+          questions.map((pregunta,index) =>(
             select_type_answer(pregunta,index)
           ))
         }
-        <PreguntaForm nuevaPregunta = {nuevaPregunta}/>
+        <PreguntaForm idPregunta = {questions.length} nuevaPregunta = {nuevaPregunta}/>
         </div>
         <Grid
           container
@@ -178,7 +202,8 @@ function CrearEncuesta(){
           <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
             Borrar
           </Button>
-          <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />}/>
+          <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />
+          }/>
           <Modal
             open={open}
             onClose={handleClose}

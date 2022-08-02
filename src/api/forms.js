@@ -13,6 +13,7 @@ import {
     where,
   } from "firebase/firestore";
   import { db } from "./firebaseConfiguration";
+  import { getQuestionsOnce, insertQuestion } from "./questions";
   
   const formsRef = collection(db, "forms");
   
@@ -60,6 +61,13 @@ import {
   
       const newFormRef = doc(formsRef);
       setDoc(newFormRef, newForm);
+
+      const questions = await getQuestionsOnce(form.id);
+
+      questions.forEach((question) => {
+        const { id, ...questionData } = question;
+        insertQuestion(newFormRef.id, questionData);
+      });
   
       return { newFormId: newFormRef.id };
     } catch (error) {
@@ -133,6 +141,9 @@ import {
         formData.settings.endDate = formData.settings.endDate.toDate();
       }
   
+      const questions = await getQuestionsOnce(formId);
+
+    formData.questions = questions;
   
       return formData;
     } catch (error) {

@@ -36,6 +36,11 @@ function PreguntaSeleccion(props){
 
   const handleCloseModal = () => setOpenModal(false);
 
+  const cambiarPregunta = (event ) =>{
+    props.cambiarPregunta(props.id,event.currentTarget.id)
+    handleCloseModal()
+  }
+
   const borrarPregunta = () => {
     props.borrarPregunta(props.id);
   };
@@ -50,6 +55,10 @@ function PreguntaSeleccion(props){
      const listaFiltrada = listaOpciones.filter((e, index) => index !== id);
      setListaOpciones(listaFiltrada);
    };
+
+   const handleInput = (event) =>{
+     props.pregunta.titulo_pregunta = event.target.value
+   }
 
   return(
     <div>
@@ -70,7 +79,7 @@ function PreguntaSeleccion(props){
               >
                 <p className = "type_answer">{props.pregunta.tipo_pregunta}</p>
                 <IconButton sx = {{position:'absolute',right: '5%',color: "#fff"}} onClick = {handleOpenModal}>
-                    <BuildCircleIcon fontSize="large" sx = {{color: "#ffc526"}}/>
+                    <BuildCircleIcon fontSize="large" sx = {{color: "#ffc526"}} />
                   </IconButton>
                   <IconButton sx = {{position:'absolute',right: '1%',color: "green"}} onClick = {borrarPregunta}>
                     <CancelIcon fontSize="large" sx = {{color: "#ffc526"}}/>
@@ -81,9 +90,10 @@ function PreguntaSeleccion(props){
                 id="filled-required"
                 label="Titulo de la pregunta"
                 defaultValue=""
-                style = {{width: '97%', marginLeft:'10px'}} 
+                style = {{width: '97%', marginLeft:'10px'}}
                 size="small"
                 variant="filled"
+                onChange = {handleInput}
               />
           </Stack>
           <OpcionesForm nuevaOpciones = {nuevaOpciones} />
@@ -121,13 +131,13 @@ function PreguntaSeleccion(props){
                   </ListSubheader>
                 }
               >
-              <ListItemButton>
+              <ListItemButton id = "Selección simple" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <RadioButtonCheckedIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Selección simple"/>
               </ListItemButton>
-              <ListItemButton>
+              <ListItemButton id = "Selección multiple" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <CheckBoxIcon/>
                 </ListItemIcon>
@@ -139,21 +149,21 @@ function PreguntaSeleccion(props){
               </ListItemButton>
               <Collapse in={openDespliegue} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemButton id = "Respuesta Corta" onClick = {cambiarPregunta} sx={{ pl: 4 }}>
                     <ListItemText primary="Respuesta Corta" />
                   </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemButton id = "Respuesta Larga" onClick = {cambiarPregunta} sx={{ pl: 4 }}>
                     <ListItemText primary="Respuesta Larga" />
                   </ListItemButton>
                 </List>
               </Collapse>
-              <ListItemButton>
+              <ListItemButton id = "Fecha" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <DateRangeIcon/>
                 </ListItemIcon>
                 <ListItemText primary = "Fecha"/>
               </ListItemButton>
-              <ListItemButton>
+              <ListItemButton id = "Multimedia" onClick = {cambiarPregunta}>
                 <ListItemIcon>
                   <ImageIcon/>
                 </ListItemIcon>

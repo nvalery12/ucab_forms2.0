@@ -32,6 +32,11 @@
   cursor: pointer;
 }
 
+#menu-links {
+  display: flex;
+  color: white;
+}
+
 @media (max-width: 900px) {
   #menu-links {
     display: none;

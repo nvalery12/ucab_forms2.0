@@ -94,7 +94,7 @@ export default function Header() {
       </div>
       <Logo onClick={navigate("/dashboard")}/>
       <div id="menu-links">
-      <MenuItem onClick={handleDashboard}>
+        <MenuItem onClick={handleDashboard}>
           Ver Encuestas
         </MenuItem>
         <MenuItem onClick={handleCreate}>

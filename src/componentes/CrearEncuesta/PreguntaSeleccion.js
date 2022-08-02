@@ -25,6 +25,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import {saveQuestion} from '../../api/questions'
 
 function PreguntaSeleccion(props){
 
@@ -57,7 +58,8 @@ function PreguntaSeleccion(props){
    };
 
    const handleInput = (event) =>{
-     props.pregunta.titulo_pregunta = event.target.value
+     props.pregunta.title = event.target.value;
+     saveQuestion(props.form,props.pregunta);
    }
 
   return(
@@ -89,7 +91,7 @@ function PreguntaSeleccion(props){
                 required
                 id="filled-required"
                 label="Titulo de la pregunta"
-                defaultValue=""
+                defaultValue={props.pregunta.title}
                 style = {{width: '97%', marginLeft:'10px'}}
                 size="small"
                 variant="filled"

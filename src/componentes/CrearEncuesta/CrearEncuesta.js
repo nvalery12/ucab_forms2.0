@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CrearEncuesta.css';
 import {useMemo} from 'react';
 
@@ -10,7 +10,6 @@ import PreguntaSeleccion from './PreguntaSeleccion.js';
 import PreguntaMultimedia from './PreguntaMultimedia.js';
 import PreguntaFecha from './PreguntaFecha.js';
 import Restricciones from './RestriccionesEncuesta/Restricciones';
-import BCrearEncuesta from './btnCrearEncuesta';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';import Button from '@mui/material/Button';
@@ -19,7 +18,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
-import { borderRadius } from '@mui/system';
 import { useUser } from '../hooks/useUser';
 import { useForm } from '../hooks/useForm';
 import {deleteForm,saveForm} from '../../api/forms';
@@ -62,7 +60,7 @@ function CrearEncuesta(){
   };
 
   const nuevaPregunta = (pregunta) => {
-     const newQuestion = {index: pregunta.index, type: pregunta.tipo_pregunta, title: ""};
+     const newQuestion = {index: pregunta.index, type: pregunta.type, title: ""};
      pregunta.id = insertQuestion(form.id, newQuestion);
      //console.log(listaPreguntas);
    };
@@ -90,6 +88,7 @@ function CrearEncuesta(){
                   borrarPregunta={borrarPregunta}
                   id={pregunta.id}
                   cambiarPregunta={cambiarPregunta}
+                  form = {form.id}
                  />
         case "Respuesta Larga":
           return <PreguntaLargaCorta
@@ -97,6 +96,7 @@ function CrearEncuesta(){
                    borrarPregunta={borrarPregunta}
                    id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
+                   form = {form.id}
                   />
         case "Selección simple":
           return <PreguntaSeleccion
@@ -104,6 +104,7 @@ function CrearEncuesta(){
                    borrarPregunta={borrarPregunta}
                    id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
+                   form = {form.id}
                   />
         case "Selección multiple":
           return <PreguntaSeleccion
@@ -111,6 +112,7 @@ function CrearEncuesta(){
                    borrarPregunta={borrarPregunta}
                    id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
+                   form = {form.id}
                   />
         case  "Fecha":
           return <PreguntaFecha
@@ -118,6 +120,7 @@ function CrearEncuesta(){
                     borrarPregunta={borrarPregunta}
                     id={pregunta.id}
                     cambiarPregunta={cambiarPregunta}
+                    form = {form.id}
                    />
         case "Multimedia":
           return <PreguntaMultimedia
@@ -125,6 +128,7 @@ function CrearEncuesta(){
                     borrarPregunta={borrarPregunta}
                     id={pregunta.id}
                     cambiarPregunta={cambiarPregunta}
+                    form = {form.id}
                    />
        default:
          console.log("Nothing");

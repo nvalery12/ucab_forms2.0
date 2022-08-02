@@ -45,7 +45,6 @@ function CrearEncuesta(){
   const user = useUser();
   const { form, setForm, questions, setQuestions, loading } = useForm();
   const navigate = useNavigate();
-  const {listaPregunta,setListaPregunta} = useState([]);
 
   
   const [open, setOpen] = React.useState(false);
@@ -80,54 +79,51 @@ function CrearEncuesta(){
    }
 
    const borrarPregunta = (pregunta) => {
-     const listaFiltrada = questions.filter((e, index) => index !== pregunta.id);
-     deleteQuestion(form.id,pregunta.idDB);
-     setQuestions(listaFiltrada);
+     deleteQuestion(form.id,pregunta.id);
    };
 
    const select_type_answer = (pregunta,index) =>{
-     console.log(pregunta.titulo_pregunta);
      switch (pregunta.type) {
        case "Respuesta Corta":
          return <PreguntaLargaCorta
                   pregunta={pregunta}
                   borrarPregunta={borrarPregunta}
-                  id={index}
+                  id={pregunta.id}
                   cambiarPregunta={cambiarPregunta}
                  />
         case "Respuesta Larga":
           return <PreguntaLargaCorta
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
-                   id={index}
+                   id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
                   />
         case "Selección simple":
           return <PreguntaSeleccion
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
-                   id={index}
+                   id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
                   />
         case "Selección multiple":
           return <PreguntaSeleccion
                    pregunta={pregunta}
                    borrarPregunta={borrarPregunta}
-                   id={index}
+                   id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
                   />
         case  "Fecha":
           return <PreguntaFecha
                     pregunta={pregunta}
                     borrarPregunta={borrarPregunta}
-                    id={index}
+                    id={pregunta.id}
                     cambiarPregunta={cambiarPregunta}
                    />
         case "Multimedia":
           return <PreguntaMultimedia
                     pregunta={pregunta}
                     borrarPregunta={borrarPregunta}
-                    id={index}
+                    id={pregunta.id}
                     cambiarPregunta={cambiarPregunta}
                    />
        default:
@@ -163,14 +159,6 @@ function CrearEncuesta(){
     );
   }
 
-  if (questions.onChange) {
-    setListaPregunta = [];
-    for (let i = 0; i < questions.length; i++) {
-      const e = questions[i];
-      setListaPregunta(e,...listaPregunta);
-
-    }
-  }
 
   return(
     <div>

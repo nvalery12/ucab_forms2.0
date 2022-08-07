@@ -23,6 +23,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import {saveQuestion} from '../../api/questions';
 
 function PreguntaMultimedia(props){
 
@@ -41,11 +42,12 @@ function PreguntaMultimedia(props){
 
   const handleInput = (event) =>{
     //setTitulo(event.target.value)
-    props.pregunta.titulo_pregunta = event.target.value
+    props.pregunta.title = event.target.value;
+    saveQuestion(props.form,props.pregunta);
   }
 
   const borrarPregunta = () => {
-    props.borrarPregunta(props.id);
+    props.borrarPregunta(props.pregunta);
   };
 
   return (
@@ -78,7 +80,7 @@ function PreguntaMultimedia(props){
                 required
                 id="filled-required"
                 label="Titulo de la pregunta"
-                defaultValue=""
+                defaultValue={props.pregunta.title}
                 style = {{width: '97%', marginLeft:'10px'}}
                 size="small"
                 variant="filled"

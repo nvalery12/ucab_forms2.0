@@ -27,6 +27,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import esLocale from "date-fns/locale/es";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import {saveQuestion} from '../../api/questions';
 
 function PreguntaFecha(props){
 
@@ -46,11 +47,12 @@ function PreguntaFecha(props){
   }
 
   const handleInput = (event) =>{
-    props.pregunta.titulo_pregunta = event.target.value
+    props.pregunta.title = event.target.value;
+    saveQuestion(props.form,props.pregunta);
   }
 
   const borrarPregunta = () => {
-    props.borrarPregunta(props.id);
+    props.borrarPregunta(props.pregunta);
   };
 
   return (
@@ -82,7 +84,7 @@ function PreguntaFecha(props){
                 required
                 id="filled-required"
                 label="Titulo de la pregunta"
-                defaultValue=""
+                defaultValue={props.pregunta.title}
                 style = {{width: '97%', marginLeft:'10px'}}
                 size="small"
                 variant="filled"

@@ -46,7 +46,7 @@ export default function App() {
         <ThemeProvider theme={theme}>
           {(currentUser?.email) ? (
             <div className="">
-              {/* <Header /> */}
+              { <Header /> }
               <PreguntaMatriz/>
             </div>
           ) : (

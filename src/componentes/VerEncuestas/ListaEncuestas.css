@@ -11,14 +11,28 @@
   max-width: 100%;
   border-radius: 10px;
   background-color: white;
-  border-left: 11px solid #40b4e5;
+  
   box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.column > .form-picture {
+.column .form-picture {
   width: 229.5px;
   height: 200px;
   border-radius: 0px 10px 0px 0px;
+}
+
+.column .btnViewEncuesta {
+  border: none;
+  width: 229.5px;
+  height: 200px;
+  border-radius: 0px 10px 0px 0px;
+}
+
+.column .btnViewEncuesta:hover {
+  content: " ";
+  cursor: pointer;
+  opacity: 0.8;
+  z-index: 1;
 }
 
 .title-box {
@@ -48,4 +62,12 @@
 
 @media screen and (max-width: 990px) {
   
+}
+
+.column:nth-child(odd) {
+  border-left: 11px solid #047732;
+}
+
+.column:nth-child(even) {
+  border-left: 11px solid #40b4e5;
 }

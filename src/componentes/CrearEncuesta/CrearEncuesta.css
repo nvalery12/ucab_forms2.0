@@ -27,8 +27,11 @@ button:focus {
   border-left: 11px solid #12100C;
 }
 
-.question{
+.question:nth-child(odd){
   border-left: 11px solid #047732;
+}
+.question:nth-child(even){
+  border-left: 11px solid #40b4e5;
 }
 
 .type_answer{
@@ -38,7 +41,13 @@ button:focus {
   font-size: 20px;
   line-height: 30px;
   text-transform: capitalize;
+}
+
+.type_answer:nth-child(odd){
   color: #047732;
+}
+.type_answer:nth-child(even){
+  color: #40b4e5;
 }
 
 .Select_type_answer{

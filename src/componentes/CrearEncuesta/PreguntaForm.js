@@ -29,8 +29,9 @@ function PreguntaForm(props){
 
   const handleCloseModal = (event) => {
     //console.log(event.currentTarget.id);
+    console.log(props.idPreguntas);
     if (event.currentTarget.id !== undefined){
-      props.nuevaPregunta({id: uuidv4(), tipo_pregunta: event.currentTarget.id});
+      props.nuevaPregunta({index: props.idPregunta, tipo_pregunta: event.currentTarget.id, titulo_pregunta: "", id:""});
     }
     setOpenModal(false)
   };
@@ -57,11 +58,11 @@ function PreguntaForm(props){
   return (
     <form onSubmit = {submit}>
         <ThemeProvider theme={theme}>
-          <Button type = "submit" variant="contained" color='primary' sx = {{display: 'block', m: '20px auto', width:'150px'}}>
-            <AddCircleOutlineOutlinedIcon fontSize="large" color="secondary" sx={{display: 'block', m: '0 auto'}}/>
+          <Button type = "submit" variant="contained" color='primary' sx = {{display: 'block', m: '20px auto', width:'120px', padding:'2px'}}>
+            <AddCircleOutlineOutlinedIcon fontSize="large" color="secondary" sx={{display: 'block', m: '0 auto', padding:'0px'}}/>
           </Button>
         </ThemeProvider>
-        
+
         <Modal
           open={openModal}
           onClose={handleCloseModal}

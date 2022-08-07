@@ -1,0 +1,43 @@
+.boxRestriction {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 90%;
+  height: auto;
+  margin: 30px auto;
+  background: #FFFFFF;
+  box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+.restriction-input {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: 95%;
+  height: 40px;
+  padding: 0 14px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid rgb(204, 204, 204);
+}
+
+.type_restriction{
+  position: relative;
+  margin-bottom: 15px;
+  padding: 5px 5px 5px 10px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  text-transform: capitalize;
+}
+
+.question:nth-child(odd){
+  color: #047732;
+}
+.question:nth-child(even){
+  color: #40b4e5;
+}
+
+.question .subquiestion-title {
+  color: black;
+  margin-left: 3%;
+}

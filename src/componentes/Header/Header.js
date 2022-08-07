@@ -9,10 +9,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from "react-router-dom";
+import { useUser } from '../hooks/useUser';
+import { createForm } from '../../api/forms';
 
 export default function Header() {
   const [ hamburgerMenu, sethamburgerMenu ] = useState(false);
-
+  const navigate = useNavigate();
+  const user = useUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -24,6 +28,13 @@ export default function Header() {
     setAnchorEl(null);
   };
 
+  const handleCreate = () => {
+    const formId = createForm(user);
+    navigate("/forms/edit/" + formId);
+  }
+  const handleDashboard = () => {
+    navigate('/dashboard');
+  }
   return (
     <div className="header">
       <div id="hamburger">
@@ -70,7 +81,7 @@ export default function Header() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               >
-                <MenuItem>
+                <MenuItem onClick={handleCreate}>
                   Crear encuesta
                 </MenuItem>
                 <MenuItem>
@@ -81,9 +92,14 @@ export default function Header() {
           )}
         </IconButton>
       </div>
-      <Logo/>
+      <Logo onClick={navigate("/dashboard")}/>
       <div id="menu-links">
-        <Links/>
+        <MenuItem onClick={handleDashboard}>
+          Ver Encuestas
+        </MenuItem>
+        <MenuItem onClick={handleCreate}>
+          Crear encuesta
+        </MenuItem>
       </div>
       <User/>
     </div>

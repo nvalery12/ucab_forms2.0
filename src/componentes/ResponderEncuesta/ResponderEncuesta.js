@@ -62,7 +62,7 @@ export default function ResponderEncuestas() {
             >
               <FormControlLabel control={<Checkbox />} label="Leclerc" />
               <FormControlLabel control={<Checkbox />} label="Verstappen" />
-              <FormControlLabel control={<Checkbox />} label="Latifi" />
+              <FormControlLabel control={<Checkbox />} label="Latifi" />  {/*🐐🐐*/}
             </RadioGroup>
           </FormControl>
         </Stack>

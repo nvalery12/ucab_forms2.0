@@ -9,18 +9,12 @@ import Stack from '@mui/material/Stack';
 import PrintIcon from '@mui/icons-material/Print';
 import Button from '@mui/material/Button';
 import { db } from "./firebaseConfiguration";
+import { useForm } from '../hooks/useForm';
 
 import './VerRespuesta.css';
 
-const responsesRef = db.collection('forms').doc('IDform').get().collection('responses');
-const questionsRef = db.collection('forms').doc('IDform').get().collection('questions');
-
-const responsesFromMail = await responsesRef.where('author', '==', 'Correo');
-
-export default class VerRespuestas extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default function VerRespuestas {
+  const {form, questions, response} = useForm();
 
 
 

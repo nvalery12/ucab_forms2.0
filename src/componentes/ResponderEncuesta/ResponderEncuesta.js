@@ -24,7 +24,7 @@ export default function ResponderEncuestas() {
       {/*EJEMPLO DE RESPUESTA PARA SELECCION SIMPLE*/}
       <Box
         component="form"
-        className = "boxResponder question"
+        className = "box question"
         noValidate
         autoComplete="off"
         sx={{paddingBottom: "10px"}}
@@ -47,7 +47,7 @@ export default function ResponderEncuestas() {
       {/*EJEMPLO DE RESPUESTA PARA SELECCION MULTIPLE*/}
       <Box
         component="form"
-        className = "boxResponder question"
+        className = "box question"
         noValidate
         autoComplete="off"
         sx={{paddingBottom: "10px"}}
@@ -70,7 +70,7 @@ export default function ResponderEncuestas() {
       {/*EJEMPLO DE RESPUESTA PARA FECHA*/}
       <Box
         component="form"
-        className = "boxResponder question"
+        className = "box question"
         noValidate
         autoComplete="off"
         sx={{paddingBottom: "10px"}}
@@ -93,7 +93,7 @@ export default function ResponderEncuestas() {
       {/*EJEMPLO DE RESPUESTA PARA MULTIMEDIA*/}
       <Box
         component="form"
-        className = "boxResponder question"
+        className = "box question"
         noValidate
         autoComplete="off"
         sx={{paddingBottom: "10px"}}
@@ -108,7 +108,7 @@ export default function ResponderEncuestas() {
       {/*EJEMPLO DE RESPUESTA PARA RESPUESTA LARGA*/}
       <Box
         component="form"
-        className = "boxResponder question"
+        className = "box question"
         noValidate
         autoComplete="off"
         sx={{paddingBottom: "10px"}}
@@ -123,7 +123,7 @@ export default function ResponderEncuestas() {
       {/*EJEMPLO DE RESPUESTA PARA RESPUESTA CORTA*/}
       <Box
         component="form"
-        className = "boxResponder question"
+        className = "box question"
         noValidate
         autoComplete="off"
         sx={{paddingBottom: "10px"}}

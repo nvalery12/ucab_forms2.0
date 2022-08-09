@@ -48,7 +48,7 @@ class PieRechartComponent extends React.Component {
     return (
       <Box
         component="form"
-        className="boxResponder question"
+        className="box question"
         noValidate
         autoComplete="off"
         sx={{ paddingBottom: "10px" }}

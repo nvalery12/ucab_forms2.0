@@ -1,9 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-
-* {
-  font-family: 'Poppins', sans-serif;
-}
-
 input:focus,
 select:focus,
 textarea:focus,
@@ -11,27 +5,8 @@ button:focus {
     outline: none;
 }
 
-.box {
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  width: 70%;
-  height: auto;
-  margin: 30px auto;
-  background: #FFFFFF;
-  box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-}
-
 .title_encuesta{
   border-left: 11px solid #12100C;
-}
-
-.question:nth-child(odd){
-  border-left: 11px solid #047732;
-}
-.question:nth-child(even){
-  border-left: 11px solid #40b4e5;
 }
 
 .type_answer{
@@ -43,16 +18,8 @@ button:focus {
   text-transform: capitalize;
 }
 
-.type_answer:nth-child(odd){
-  color: #047732;
-}
-.type_answer:nth-child(even){
-  color: #40b4e5;
-}
-
 .Select_type_answer{
   box-sizing: border-box;
-
   position: relative;
   display: block;
   width: 360px;
@@ -60,7 +27,6 @@ button:focus {
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
-
   background-color: #FFFFFF;
   border-left: 11px solid #047732;
   box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
@@ -69,12 +35,6 @@ button:focus {
 
 .btnEncuesta {
   padding: 20px 50px;
-}
-
-@media (max-width: 1400px) {
-  .box {
-    width: 90%;
-  }
 }
 
 .form-input-number {

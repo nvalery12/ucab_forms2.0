@@ -18,6 +18,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { useUser } from "../hooks/useUser";
 import { useParams } from "react-router-dom";
 import { getFormOnce } from "../../api/forms";
+import { LinearProgress } from "@mui/material";
 
 
 export default function ResponderEncuestas() {
@@ -37,7 +38,7 @@ export default function ResponderEncuestas() {
       if (question.type === "Multimedia") {
         answers[question.id] = [];
       } else if (question.type === "Selección multiple") {
-        answers[question.id] = question.options[0];
+        answers[question.id] = question.opciones[0];
       } else {
         answers[question.id] = "";
       }
@@ -65,6 +66,25 @@ export default function ResponderEncuestas() {
 
     getForm();
   }, [formId, initializeAnswers, user]);
+
+  if (loading) {
+    return (
+      <Box>
+        <LinearProgress />
+      </Box>
+    );
+  }
+
+  // const select_type = (pregunta) =>{
+  //   switch (pregunta.type) {
+  //     case value:
+        
+  //       break;
+    
+  //     default:
+  //       break;
+  //   }
+  // }
 
 
   return (

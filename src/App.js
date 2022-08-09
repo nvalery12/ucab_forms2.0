@@ -84,7 +84,9 @@ export default function App() {
                   </FormProvider>
                 }
               />
-              <Route path="/forms/answer/:id" element={<ResponderEncuestas />} />
+              <Route path="/forms/answer/:id" element={<>
+              <Header />
+              <ResponderEncuestas /></>} />
 
             </Routes>
           </Router>

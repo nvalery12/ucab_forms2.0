@@ -61,7 +61,7 @@ function CrearEncuesta(){
 
   const nuevaPregunta = (pregunta) => {
      const newQuestion = {index: pregunta.index, type: pregunta.type, title: "",opciones:[]};
-     if (newQuestion.type==='') {
+     if (newQuestion!="") {
       pregunta.id = insertQuestion(form.id, newQuestion);
      }
      //console.log(listaPreguntas);

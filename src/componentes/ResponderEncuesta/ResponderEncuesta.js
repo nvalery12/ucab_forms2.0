@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect, useCallback } from "react";
 import './ResponderEncuesta.css'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -14,10 +15,77 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Checkbox from '@mui/material/Checkbox';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { useUser } from "../hooks/useUser";
+import { useParams } from "react-router-dom";
+import { getFormOnce } from "../../api/forms";
+import { LinearProgress } from "@mui/material";
+
 
 export default function ResponderEncuestas() {
   const [selectedDateInicio, setSelectedDateInicio] = React.useState(null);
   const [selectedDateFin, setSelectedDateFin] = React.useState(null);
+  const {id: formId} = useParams();
+  const [form, setForm] = useState(null);
+  const [response, setResponse] = useState({});
+  const [answers, setAnswers] = useState();
+  const [loading, setLoading] = useState(true);
+  const { user} = useUser();
+
+  const initializeAnswers = useCallback((questions) => {
+    const answers = {};
+
+    questions.forEach((question) => {
+      if (question.type === "Multimedia") {
+        answers[question.id] = [];
+      } else if (question.type === "Selección multiple") {
+        answers[question.id] = question.opciones[0];
+      } else {
+        answers[question.id] = "";
+      }
+    });
+
+    setAnswers(answers);
+  }, []);
+
+  useEffect(() => {
+    
+    const getForm = async () => {
+      const form = await getFormOnce(formId);
+      if (form) {
+        if (form.settings.onlyOneResponse && !user) {
+          setForm(form);
+          return setLoading(false);
+        }
+
+        setForm(form);
+        initializeAnswers(form.questions);
+
+      }
+      setLoading(false);
+    };
+
+    getForm();
+  }, [formId, initializeAnswers, user]);
+
+  if (loading) {
+    return (
+      <Box>
+        <LinearProgress />
+      </Box>
+    );
+  }
+
+  // const select_type = (pregunta) =>{
+  //   switch (pregunta.type) {
+  //     case value:
+        
+  //       break;
+    
+  //     default:
+  //       break;
+  //   }
+  // }
+
 
   return (
     <div className="">

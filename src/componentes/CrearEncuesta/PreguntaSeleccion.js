@@ -48,9 +48,9 @@ function PreguntaSeleccion(props){
 
   const [listaOpciones, setListaOpciones] = React.useState(props.pregunta.opciones);
 
+
   const nuevaOpciones = (opcion) => {
      setListaOpciones([opcion, ...listaOpciones]);
-     console.log(listaOpciones);
      props.pregunta.opciones = listaOpciones;
     saveQuestion(props.form,props.pregunta);
    };

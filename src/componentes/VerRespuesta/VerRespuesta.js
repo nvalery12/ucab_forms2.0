@@ -8,13 +8,60 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import PrintIcon from '@mui/icons-material/Print';
 import Button from '@mui/material/Button';
-import { db } from "./firebaseConfiguration";
 import { useForm } from '../hooks/useForm';
 
 import './VerRespuesta.css';
 
-export default function VerRespuestas {
+export default function VerRespuestas() {
   const {form, questions, response} = useForm();
+
+  function checkType(){
+    for (const q of questions) {
+      for (const r of response) {
+        for (let i = 0; i < r.answer.length ; i++) {
+          if(r.answer[i].id == q.id){
+            switch (q.type) {
+              case "Selección simple":
+                estadisticasSeleccion(q,r.answer[i]);
+                break;
+                
+              case "Selección múltiple":
+                estadisticasSeleccion(q,r.answer[i]);
+                break;
+                  
+              case "Respuesta corta":
+                estadisticasTexto(q,r.answer[i]);
+                break;
+                
+              case "Respuesta larga":
+                estadisticasTexto(q,r.answer[i]);
+                break;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function estadisticasSeleccion(q,r){
+    const cuentas = {};
+    let totalMuestra = 0;
+    for (const o in q.opciones) {
+        cuentas[o] = 0;
+    }
+    if(r.answer[q.id]){
+      for(let i=0 ; i < r.answer.length ; i++){
+        if(r.answer.includes(q.opciones[i])){
+          cuentas[i]++;
+          totalMuestra++;
+        }
+      }
+    }
+    for (const o in q.opciones) {
+      cuentas[o] = cuentas[o]/totalMuestra*100;
+    }
+    return cuentas;
+  }
 
 
 
@@ -28,8 +75,7 @@ export default function VerRespuestas {
         var height = pdf.internal.pageSize.getHeight();
         pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
         pdf.save("resultados.pdf");
-      })
-    ;
+      });
   }
 
   respuesta_Larga(response) {
@@ -99,9 +145,7 @@ export default function VerRespuestas {
               name="controlled-radio-buttons-group"
               className="PreguntaSeleccion"
             >
-              for (const iterator of object) {
-                <FormControlLabel value={</>} control={<Radio />} label={</>}/>
-              }
+              <FormControlLabel value={/**/} control={<Radio />} label={/**/}/>
             </RadioGroup>
           </FormControl>
         </Stack>
@@ -126,9 +170,7 @@ export default function VerRespuestas {
               name="controlled-radio-buttons-group"
               className="PreguntaSeleccion"
             >
-              for (const iterator of object) {
-                <FormControlLabel control={<Checkbox />} label={</>} />            
-              }
+                <FormControlLabel control={<Checkbox />} label={/**/} />
 
             </RadioGroup>
           </FormControl>

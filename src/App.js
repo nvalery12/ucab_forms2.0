@@ -82,7 +82,7 @@ export default function App() {
                   </>
                 }
               />
-              </Route>
+              <Route path="/forms/estadisticas/:id" element={<VerRespuesta/>} />
               <Route
                 path="/forms/edit/:id"
                 element={
@@ -92,7 +92,7 @@ export default function App() {
                   </FormProvider>
                 }
               />
-              <Route path="/forms/estadisticas/:id" element={<VerRespuesta/>} />
+              </Route>
             </Routes>
             </Router>
           </UserProvider>

@@ -8,13 +8,21 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import PrintIcon from '@mui/icons-material/Print';
 import Button from '@mui/material/Button';
+import { db } from "./firebaseConfiguration";
 
 import './VerRespuesta.css';
+
+const responsesRef = db.collection('forms').doc('IDform').get().collection('responses');
+const questionsRef = db.collection('forms').doc('IDform').get().collection('questions');
+
+const responsesFromMail = await responsesRef.where('author', '==', 'Correo');
 
 export default class VerRespuestas extends Component {
   constructor(props) {
     super(props);
   }
+
+
 
   printDocument() {
     const input = document.getElementById('divToPrint');
@@ -30,7 +38,7 @@ export default class VerRespuestas extends Component {
     ;
   }
 
-  respuesta_Larga() {
+  respuesta_Larga(response) {
     return (
       <Box
         component="form"
@@ -55,7 +63,7 @@ export default class VerRespuestas extends Component {
     )
   }
 
-  respuesta_Corta() {
+  respuesta_Corta(response) {
     return (
       <Box
         component="form"
@@ -80,20 +88,105 @@ export default class VerRespuestas extends Component {
     )
   }
 
-  QuestionType(type) {
-    switch(type) {
-      case 'seleccionSimple':
-        return null;
-      case 'seleccionMultiple':
-        return null;
-      case 'respuestaLarga':
-        return <respuesta_Larga/>;
-      case 'respuestaCorta':
-        return <respuesta_Corta/>;
-      default:
-        return;
+  seleccion_Simple(response){
+    return(
+      <Box
+        component="form"
+        className = "box question"
+        noValidate
+        autoComplete="off"
+        sx={{paddingBottom: "10px"}}
+      >
+        <Stack sx={{display:'flex'}}>
+          <p className='DescripcionPregunta'>{}</p>
+          <FormControl>
+            <RadioGroup
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              className="PreguntaSeleccion"
+            >
+              for (const iterator of object) {
+                <FormControlLabel value={</>} control={<Radio />} label={</>}/>
+              }
+            </RadioGroup>
+          </FormControl>
+        </Stack>
+      </Box>
+    )
+  }
+
+  seleccion_Multiple(){
+    return (
+      <Box
+        component="form"
+        className = "box question"
+        noValidate
+        autoComplete="off"
+        sx={{paddingBottom: "10px"}}
+      >
+        <Stack sx={{display:'flex'}}>
+          <p className='DescripcionPregunta'>Nombre de la pregunta</p>
+          <FormControl>
+            <RadioGroup
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              className="PreguntaSeleccion"
+            >
+              for (const iterator of object) {
+                <FormControlLabel control={<Checkbox />} label={</>} />            
+              }
+
+            </RadioGroup>
+          </FormControl>
+        </Stack>
+      </Box>
+    )
+  }
+
+
+  Logica(){
+    for (const r of responsesFromMail) {
+      for (const q of questionsRef) {
+        if(r.idDocument==q.id){
+          switch (q.type) {
+            case "Selección simple":
+              
+            break;
+  
+            case "Selección múltiple":
+              
+            break;
+  
+            case "Fecha":
+              
+            break;
+  
+            case "Multimedia":
+              
+            break;
+          
+            default:
+              break;
+          }
+        }
+      }
     }
   }
+
+  // QuestionType(type) {
+  //   switch(type) {
+  //     case 'seleccionSimple':
+  //       return null;
+  //     case 'seleccionMultiple':
+  //       return null;
+  //     case 'respuestaLarga':
+  //       return <respuesta_Larga/>;
+  //     case 'respuestaCorta':
+  //       return <respuesta_Corta/>;
+  //     default:
+  //       return;
+  //   }
+  // }
 
   render() {
     return (

@@ -92,6 +92,7 @@ export default function App() {
                   </FormProvider>
                 }
               />
+              <Route path="/forms/estadisticas/:id" element={<VerRespuesta/>} />
             </Routes>
             </Router>
           </UserProvider>

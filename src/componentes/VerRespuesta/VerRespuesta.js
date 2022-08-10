@@ -15,54 +15,60 @@ import './VerRespuesta.css';
 export default function VerRespuestas() {
   const {form, questions, response} = useForm();
 
-  function checkType(){
+  function countSelections(){
+    let totalmuestra = 0;
     for (const q of questions) {
       for (const r of response) {
-        for (let i = 0; i < r.answer.length ; i++) {
-          if(r.answer[i].id == q.id){
+        let counts = [];
+        const ids = Object.keys(response.answer);
+        for (const o of q.opciones) {
+          counts.push(0);
+        }
+        for (let i=0 ; i<Object.keys(response.answer).length ; i++) {
+          if(response.answer[ids[i]] == q.id){
             switch (q.type) {
               case "Selección simple":
-                estadisticasSeleccion(q,r.answer[i]);
+                for(let i=0 ; i < r.length ; i++){
+                  for (let i = 0; i < q.opciones.length; i++) {
+                    if(r===q.opciones[i]){
+                      counts[i]++;
+                    }
+                  }
+                }
                 break;
                 
               case "Selección múltiple":
-                estadisticasSeleccion(q,r.answer[i]);
+                for(let i=0 ; i < r.length ; i++){
+                  if(r.includes(q.opciones[i])){
+                    counts[i]++;
+                  }
+                }
                 break;
-                  
-              case "Respuesta corta":
-                estadisticasTexto(q,r.answer[i]);
-                break;
-                
-              case "Respuesta larga":
-                estadisticasTexto(q,r.answer[i]);
-                break;
+              }
             }
           }
         }
       }
-    }
-  }
-
-  function estadisticasSeleccion(q,r){
-    const cuentas = {};
-    let totalMuestra = 0;
-    for (const o in q.opciones) {
-        cuentas[o] = 0;
-    }
-    if(r.answer[q.id]){
-      for(let i=0 ; i < r.answer.length ; i++){
-        if(r.answer.includes(q.opciones[i])){
-          cuentas[i]++;
-          totalMuestra++;
-        }
+      totalmuestra++;
+      for (let i=0 ; i<counts.length ; i++) {
+        counts[o] = counts[o]/totalmuestra*100;
       }
-    }
-    for (const o in q.opciones) {
-      cuentas[o] = cuentas[o]/totalMuestra*100;
-    }
-    return cuentas;
+      return counts;
   }
 
+  // function estadisticasSeleccionMultiple(q,r,totalMuestra,counts){
+  //   // for (const o of q.opciones) {
+  //   //   counts[o] = counts[o]/totalMuestra*100;
+  //   // }
+  //   return counts;
+  // }
+
+  // function estadisticasSeleccionSimple(q,r,totalMuestra,counts){
+  //   for (const o of q.opciones) {
+  //     counts[o] = counts[o]/totalMuestra*100;
+  //   }
+  //   return counts;
+  // }
 
 
   printDocument() {

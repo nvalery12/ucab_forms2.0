@@ -36,7 +36,7 @@ class PieRechartComponent extends React.Component {
       >
 
         <Stack sx={{ display: 'flex' }}>
-          <p className='DescripcionPregunta'>Distribucion de noelios</p>
+          <p className='DescripcionPregunta'>Grafico de barras ejemplo</p>
 
 
           {/*console.log(pieChart)*/}

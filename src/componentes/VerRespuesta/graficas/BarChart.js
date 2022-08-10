@@ -17,7 +17,7 @@ const App = (props) => {
       sx={{ paddingBottom: "10px" }}
     >
       <Stack sx={{ display: 'flex' }}>
-        <p className='DescripcionPregunta'>Probabilidad de que noelio pase Seminario</p>
+        <p className='DescripcionPregunta'>Graficos de barras ejemplo</p>
         <BarChart
           className='charts'
           width={600}

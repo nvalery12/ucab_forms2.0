@@ -74,8 +74,7 @@ export default function App() {
                     </>
                   }
                 />
-              </Route>
-              <Route
+                <Route
                 path="/forms/edit/:id"
                 element={
                   <FormProvider>
@@ -84,10 +83,10 @@ export default function App() {
                   </FormProvider>
                 }
               />
+              </Route>
               <Route path="/forms/answer/:id" element={<>
               <Header />
               <ResponderEncuestas /></>} />
-
             </Routes>
           </Router>
         </UserProvider>

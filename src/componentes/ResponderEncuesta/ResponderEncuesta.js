@@ -23,10 +23,9 @@ import { LinearProgress } from "@mui/material";
 
 export default function ResponderEncuestas() {
   const [selectedDateInicio, setSelectedDateInicio] = React.useState(null);
-  const [selectedDateFin, setSelectedDateFin] = React.useState(null);
+  const [response,setResponse] = useState();
   const {id: formId} = useParams();
   const [form, setForm] = useState(null);
-  const [response, setResponse] = useState({});
   const [answers, setAnswers] = useState();
   const [loading, setLoading] = useState(true);
   const { user} = useUser();
@@ -76,7 +75,11 @@ export default function ResponderEncuestas() {
   }
 
   const handleInput = (pregunta) => (e) => {
-    setAnswers(...answers,[pregunta.id] = e);
+    setAnswers({...answers,[pregunta.id] : e.target.value});
+  }
+
+  const handleInputDate = (pregunta,selectedDateInicio) => {
+    setAnswers({...answers,[pregunta.id] : selectedDateInicio});
   }
 
   const select_type_answer = (pregunta) =>{
@@ -107,7 +110,7 @@ export default function ResponderEncuestas() {
             <Stack sx={{display:'flex'}}>
               <p className='DescripcionPregunta'>{pregunta.title}</p>
               <FormControl>
-                <TextareaAutosize className="RespondTextArea" sx={{margin: "5px 10px"}} maxRows={3} minRows={3}/>
+                <TextareaAutosize className="RespondTextArea" sx={{margin: "5px 10px"}} maxRows={3} minRows={3} onChange={handleInput(pregunta)}/>
               </FormControl>
             </Stack>
           </Box>
@@ -175,6 +178,7 @@ export default function ResponderEncuestas() {
                     value={selectedDateInicio}
                     onChange={(newValue) => {
                       setSelectedDateInicio(newValue);
+                      handleInputDate(pregunta,selectedDateInicio);
                     }}
                     renderInput={(params) => <TextField {...params} style = {{width: '100%', margin: '0 auto', marginTop: '3px', marginBottom: '10px', borderRadius: '4px'}} size="small"/>}
                   />

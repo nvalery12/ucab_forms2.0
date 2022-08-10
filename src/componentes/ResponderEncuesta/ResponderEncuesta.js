@@ -75,6 +75,10 @@ export default function ResponderEncuestas() {
     );
   }
 
+  const handleInput = (pregunta) => (e) => {
+    setAnswers(...answers,[pregunta.id] = e);
+  }
+
   const select_type_answer = (pregunta) =>{
     switch (pregunta.type) {
       case "Respuesta Corta":
@@ -88,7 +92,7 @@ export default function ResponderEncuestas() {
             <Stack sx={{display:'flex'}}>
               <p className='DescripcionPregunta'>{pregunta.title}</p>
               <FormControl>
-              <TextField id="outlined-basic" inputProps={{ maxLength: 100 }} className="RespuestaCorta" variant="outlined" />
+              <TextField id="outlined-basic" inputProps={{ maxLength: 100 }} className="RespuestaCorta" variant="outlined" onChange={handleInput(pregunta)}/>
               </FormControl>
             </Stack>
           </Box>

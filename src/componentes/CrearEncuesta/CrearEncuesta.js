@@ -217,7 +217,8 @@ function CrearEncuesta(){
             aria-describedby="child-modal-description"
           >
             <Box className="modal-question-matriz" sx={{ ...style, width: '80%' }}>
-              <Restricciones/>
+              {/* <Restricciones/> */}
+              <span>link piola: {`http://localhost:3000/forms/answers/${form.id}`}</span>
             </Box>
           </Modal>
         </Grid>

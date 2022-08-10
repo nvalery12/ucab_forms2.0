@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React,{useState} from 'react';
 import './CrearEncuesta.css';
 import {useMemo} from 'react';
-
+import { useLocation } from "react-router-dom"
 
 //import Pregunta from './Pregunta.js';
 import PreguntaForm from './PreguntaForm.js';
@@ -10,7 +10,6 @@ import PreguntaSeleccion from './PreguntaSeleccion.js';
 import PreguntaMultimedia from './PreguntaMultimedia.js';
 import PreguntaFecha from './PreguntaFecha.js';
 import Restricciones from './RestriccionesEncuesta/Restricciones';
-import BCrearEncuesta from './btnCrearEncuesta';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';import Button from '@mui/material/Button';
@@ -19,13 +18,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
-import { borderRadius } from '@mui/system';
 import { useUser } from '../hooks/useUser';
 import { useForm } from '../hooks/useForm';
 import {deleteForm,saveForm} from '../../api/forms';
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { deleteQuestion, insertQuestion } from '../../api/questions';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const style = {
   overflowX: 'auto',
@@ -36,9 +35,8 @@ const style = {
   bgcolor: '#efefef',
   border: '2px solid #000',
   boxShadow: 24,
-  width: '80%',
-  height: '90%',
-  borderRadius: '25px'
+  borderRadius: '15px',
+  backgroundColor: '#efefef'
 };
 
 function CrearEncuesta(){
@@ -48,8 +46,6 @@ function CrearEncuesta(){
 
   
   const [open, setOpen] = React.useState(false);
-
-  
 
   const handleOpen = (e) => {
     e.preventDefault();
@@ -62,8 +58,10 @@ function CrearEncuesta(){
   };
 
   const nuevaPregunta = (pregunta) => {
-     const newQuestion = {index: pregunta.index, type: pregunta.tipo_pregunta, title: ""};
-     pregunta.id = insertQuestion(form.id, newQuestion);
+     const newQuestion = {index: pregunta.index, type: pregunta.type, title: "",opciones:[]};
+     if (newQuestion!="") {
+      pregunta.id = insertQuestion(form.id, newQuestion);
+     }
      //console.log(listaPreguntas);
    };
 
@@ -90,6 +88,7 @@ function CrearEncuesta(){
                   borrarPregunta={borrarPregunta}
                   id={pregunta.id}
                   cambiarPregunta={cambiarPregunta}
+                  form = {form.id}
                  />
         case "Respuesta Larga":
           return <PreguntaLargaCorta
@@ -97,6 +96,7 @@ function CrearEncuesta(){
                    borrarPregunta={borrarPregunta}
                    id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
+                   form = {form.id}
                   />
         case "Selección simple":
           return <PreguntaSeleccion
@@ -104,6 +104,7 @@ function CrearEncuesta(){
                    borrarPregunta={borrarPregunta}
                    id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
+                   form = {form.id}
                   />
         case "Selección multiple":
           return <PreguntaSeleccion
@@ -111,6 +112,7 @@ function CrearEncuesta(){
                    borrarPregunta={borrarPregunta}
                    id={pregunta.id}
                    cambiarPregunta={cambiarPregunta}
+                   form = {form.id}
                   />
         case  "Fecha":
           return <PreguntaFecha
@@ -118,6 +120,7 @@ function CrearEncuesta(){
                     borrarPregunta={borrarPregunta}
                     id={pregunta.id}
                     cambiarPregunta={cambiarPregunta}
+                    form = {form.id}
                    />
         case "Multimedia":
           return <PreguntaMultimedia
@@ -125,12 +128,15 @@ function CrearEncuesta(){
                     borrarPregunta={borrarPregunta}
                     id={pregunta.id}
                     cambiarPregunta={cambiarPregunta}
+                    form = {form.id}
                    />
        default:
          console.log("Nothing");
          console.log(pregunta);
      }
    }
+
+   
 
    const handleDelete = () => {
     deleteForm(form.id);
@@ -158,7 +164,7 @@ function CrearEncuesta(){
       </Box>
     );
   }
-
+  // const sampleLocation = useLocation();
 
   return(
     <div>
@@ -199,31 +205,25 @@ function CrearEncuesta(){
           alignItems="flex-end"
           className='btnEncuesta'
         >
-          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
+          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon/>} onClick={handleDelete}>
             Borrar
           </Button>
-          <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />
-          }/>
+           <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon/>}>Enviar</Button>
           <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
           >
-            <Box className="modal-question-matriz" sx={{ ...style, width: '80%' }}>
-              <Restricciones/>
-            </Box>
-          </Modal>
+             <Box className="modal-question-matriz" sx={{ ...style}}>
+              <span>Link encuesta:</span>
+              <span id="linkEncuesta">{`http://localhost:3000/forms/answer/${form.id}`}</span>
+              <Button variant="contained" startIcon={<ContentCopyIcon/>}>Copiar</Button>
+            </Box> 
+          </Modal> 
         </Grid>
     </div>
   );
 }
 
 export default CrearEncuesta;
-
-
-// <PreguntaLargaCorta
-//  pregunta={e}
-//  borrarPregunta={borrarPregunta}
-//  id={index}
-// />

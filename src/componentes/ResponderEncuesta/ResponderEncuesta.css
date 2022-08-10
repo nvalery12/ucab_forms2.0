@@ -1,21 +1,3 @@
-.boxResponder {
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  width: 70%;
-  height: auto;
-  margin: 30px auto;
-  background: #FFFFFF;
-  box-shadow: 5px 4px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  padding: 10px 15px;
-}
-
-.DescripcionPregunta {
-  margin-bottom: 10px;
-  margin-left: -5px;
-}
-
 .PreguntaSeleccion {
   color: black;
 }
@@ -79,15 +61,36 @@
   text-transform: capitalize;
 }
 
-.question:nth-child(odd){
-  color: #047732;
-}
-.question:nth-child(even){
-  color: #40b4e5;
-}
-
 .question .subquiestion-title {
   color: black;
   margin-left: 3%;
 }
 
+.box .encuestaTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #12100C;
+}
+
+.box .encuestaDescripcion {
+  font-size: 15px;
+  color: #12100C;
+  margin-top: 5px;
+}
+
+.titleAnswer {
+  border-left: 11px solid #12100C;
+}
+
+.newUser {
+  margin: 10px 0px;
+  width: 100%;
+  height: 50px;
+  padding: 0px 6px;
+}
+
+#sendForm {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}

@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 as uuidv4 } from 'uuid';
 import Button from '@mui/material/Button';
 
 import Modal from '@mui/material/Modal';
@@ -28,10 +27,9 @@ function PreguntaForm(props){
   const handleDespliegue = () => setOpenDespliegue(!openDespliegue);
 
   const handleCloseModal = (event) => {
-    //console.log(event.currentTarget.id);
     console.log(props.idPreguntas);
     if (event.currentTarget.id !== undefined){
-      props.nuevaPregunta({index: props.idPregunta, tipo_pregunta: event.currentTarget.id, titulo_pregunta: "", id:""});
+      props.nuevaPregunta({index: props.idPregunta, type: event.currentTarget.id, title: "", id:""});
     }
     setOpenModal(false)
   };
@@ -39,7 +37,6 @@ function PreguntaForm(props){
   const submit = (event) => {
     event.preventDefault();
     handleOpenModal();
-    //props.nuevaPregunta({id: uuidv4()});
   };
 
   const theme = createTheme({

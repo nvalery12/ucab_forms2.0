@@ -72,6 +72,7 @@ import {
   export const saveQuestion = (formId, question) => {
     const { id: questionId, ...questionData } = question;
     const questionRef = doc(db, "forms", formId, "questions", questionId);
+    // console.log(questionData.opciones);
     updateDoc(questionRef, questionData);
   };
   

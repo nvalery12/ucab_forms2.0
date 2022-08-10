@@ -32,22 +32,19 @@ export default function ListaEncuestas() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [userForms, setUserForms] = useState([]);
-  const [collaborationForms, setCollaborationForms] = useState([]);
   const [loadingUserForms, setLoadingUserForms] = useState(true);
-  const [loadingCollaborationForms, setLoadingCollaborationForms] =
-    useState(true);
 
-    useEffect(() => {
-      const unsubscribeUserForms = getUserForms(user.id, (forms) => {
-        
-        setUserForms(forms);
-        setLoadingUserForms(false);
-      });
-  
-      return () => {
-        unsubscribeUserForms();
-      };
-    }, [user]);
+  useEffect(() => {
+    const unsubscribeUserForms = getUserForms(user.id, (forms) => {
+      
+      setUserForms(forms);
+      setLoadingUserForms(false);
+    });
+
+    return () => {
+      unsubscribeUserForms();
+    };
+  }, [user]);
 
 
   const handleEdit = (id) => {
@@ -63,44 +60,31 @@ export default function ListaEncuestas() {
       )      
     }
 
-    const formularios = () =>{
-      let encuestas = [];
-      for (let i = 0; i < userForms.length; i++) {  
-        let form = userForms[i];
-        encuestas.push(<div className="column" id={i}>
-          <button className='btnViewEncuesta' >
-            <img className='form-picture' src={Ejemplo} alt='Ejemplo de ejemplo'/>
-          </button>
-          <div className="title-box" >
-            <span className='form-title'>{form.title}</span>
-            <IconButton className="info-btn" onClick={handleOpen}>
-              <InfoIcon className='info-icon'/>
-            </IconButton>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  {form.title}
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Descripcion: {form.description}<br/>Fecha creada: {form.createAt}<br/>Numero de respuestas: {form.responses}
-                </Typography>
-              </Box>
-            </Modal>
-          </div>
-        </div>)
-      }
-      return encuestas;
+    const handleAnswers = (form) => {
+      navigate("/forms/edit/answers/"+form.id);
+    }
+
+    const formularios = (e) =>{
+        return <div className="column" id={e.id}>
+        <button className='btnViewEncuesta' onClick={()=>{handleAnswers(e)}}>
+          <img className='form-picture' src={Ejemplo} alt='Ejemplo de ejemplo' />
+        </button>
+        <div className="title-box" >
+          <span className='form-title'>{e.title}</span>
+          <IconButton className="info-btn" onClick={()=>{handleEdit(e.id)}}>
+            <InfoIcon className='info-icon'/>
+          </IconButton>
+          
+        </div>
+      </div>
     };
 
   return (
     <div className='row'>
       {
-        formularios()
+        userForms.map((e) => (
+          formularios(e)
+        ))
       }
     </div>
   );

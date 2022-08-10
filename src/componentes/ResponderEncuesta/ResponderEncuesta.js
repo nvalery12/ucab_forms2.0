@@ -75,134 +75,137 @@ export default function ResponderEncuestas() {
     );
   }
 
-  // const select_type = (pregunta) =>{
-  //   switch (pregunta.type) {
-  //     case value:
-        
-  //       break;
-    
-  //     default:
-  //       break;
-  //   }
-  // }
+  const select_type_answer = (pregunta) =>{
+    switch (pregunta.type) {
+      case "Respuesta Corta":
+        return <Box
+            component="form"
+            className = "boxResponder question"
+            noValidate
+            autoComplete="off"
+            sx={{paddingBottom: "10px"}}
+          >
+            <Stack sx={{display:'flex'}}>
+              <p className='DescripcionPregunta'>{pregunta.title}</p>
+              <FormControl>
+              <TextField id="outlined-basic" inputProps={{ maxLength: 100 }} className="RespuestaCorta" variant="outlined" />
+              </FormControl>
+            </Stack>
+          </Box>
+       case "Respuesta Larga":
+         return <Box
+            component="form"
+            className = "boxResponder question"
+            noValidate
+            autoComplete="off"
+            sx={{paddingBottom: "10px"}}
+          >
+            <Stack sx={{display:'flex'}}>
+              <p className='DescripcionPregunta'>{pregunta.title}</p>
+              <FormControl>
+                <TextareaAutosize className="RespondTextArea" sx={{margin: "5px 10px"}} maxRows={3} minRows={3}/>
+              </FormControl>
+            </Stack>
+          </Box>
+       case "Selección simple":
+         return <Box
+          component="form"
+          className = "boxResponder question"
+          noValidate
+          autoComplete="off"
+          sx={{paddingBottom: "10px"}}
+        >
+          <Stack sx={{display:'flex'}}>
+            <p className='DescripcionPregunta'>{pregunta.title}</p>
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="controlled-radio-buttons-group"
+                className="PreguntaSeleccion"
+              >
+                {pregunta.opciones.map((opcion) =>(
+                  <FormControlLabel value={opcion} control={<Radio />} label={opcion} />)
+                )}
+                
+              </RadioGroup>
+            </FormControl>
+          </Stack>
+        </Box>
+       case "Selección multiple":
+         return <Box
+            component="form"
+            className = "boxResponder question"
+            noValidate
+            autoComplete="off"
+            sx={{paddingBottom: "10px"}}
+          >
+            <Stack sx={{display:'flex'}}>
+              <p className='DescripcionPregunta'>{pregunta.title}</p>
+              <FormControl>
+                <RadioGroup
+                  aria-labelledby="demo-controlled-radio-buttons-group"
+                  name="controlled-radio-buttons-group"
+                  className="PreguntaSeleccion"
+                >
+                  {pregunta.opciones.map((element)=>(
+                    <FormControlLabel control={<Checkbox />} label={element} />
+                  ))}
+                  
+                </RadioGroup>
+              </FormControl>
+            </Stack>
+          </Box>
+       case  "Fecha":
+         return <Box
+            component="form"
+            className = "boxResponder question"
+            noValidate
+            autoComplete="off"
+            sx={{paddingBottom: "10px"}}
+          >
+            <Stack sx={{display:'flex'}}>
+              <p className='DescripcionPregunta'>{pregunta.title}</p>
+              <FormControl>
+                <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale = {esLocale}>
+                  <DateTimePicker
+                    value={selectedDateInicio}
+                    onChange={(newValue) => {
+                      setSelectedDateInicio(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} style = {{width: '100%', margin: '0 auto', marginTop: '3px', marginBottom: '10px', borderRadius: '4px'}} size="small"/>}
+                  />
+                </LocalizationProvider>
+              </FormControl>
+            </Stack>
+          </Box>
+       case "Multimedia":
+         return <Box
+            component="form"
+            className = "boxResponder question"
+            noValidate
+            autoComplete="off"
+            sx={{paddingBottom: "10px"}}
+          >
+            <Stack sx={{display:'flex'}}>
+              <p className='DescripcionPregunta'>{pregunta.title}</p>
+              <FormControl>
+                <input className="RespuestaArchivo" type='file' />
+              </FormControl>
+            </Stack>
+          </Box>
+      default:
+        console.log("Nothing");
+        console.log(pregunta);
+    }
+  }
 
 
   return (
     <div className="">
-      {/*EJEMPLO DE RESPUESTA PARA SELECCION SIMPLE*/}
-      <Box
-        component="form"
-        className = "boxResponder question"
-        noValidate
-        autoComplete="off"
-        sx={{paddingBottom: "10px"}}
-      >
-        <Stack sx={{display:'flex'}}>
-          <p className='DescripcionPregunta'>Nombre de la pregunta</p>
-          <FormControl>
-            <RadioGroup
-              aria-labelledby="demo-controlled-radio-buttons-group"
-              name="controlled-radio-buttons-group"
-              className="PreguntaSeleccion"
-            >
-              <FormControlLabel value="female" control={<Radio />} label="Female" />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel value="otres" control={<Radio />} label="Otres" />
-            </RadioGroup>
-          </FormControl>
-        </Stack>
-      </Box>
-      {/*EJEMPLO DE RESPUESTA PARA SELECCION MULTIPLE*/}
-      <Box
-        component="form"
-        className = "boxResponder question"
-        noValidate
-        autoComplete="off"
-        sx={{paddingBottom: "10px"}}
-      >
-        <Stack sx={{display:'flex'}}>
-          <p className='DescripcionPregunta'>Nombre de la pregunta</p>
-          <FormControl>
-            <RadioGroup
-              aria-labelledby="demo-controlled-radio-buttons-group"
-              name="controlled-radio-buttons-group"
-              className="PreguntaSeleccion"
-            >
-              <FormControlLabel control={<Checkbox />} label="Leclerc" />
-              <FormControlLabel control={<Checkbox />} label="Verstappen" />
-              <FormControlLabel control={<Checkbox />} label="Latifi" />
-            </RadioGroup>
-          </FormControl>
-        </Stack>
-      </Box>
-      {/*EJEMPLO DE RESPUESTA PARA FECHA*/}
-      <Box
-        component="form"
-        className = "boxResponder question"
-        noValidate
-        autoComplete="off"
-        sx={{paddingBottom: "10px"}}
-      >
-        <Stack sx={{display:'flex'}}>
-          <p className='DescripcionPregunta'>Nombre de la pregunta</p>
-          <FormControl>
-            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale = {esLocale}>
-              <DateTimePicker
-                value={selectedDateInicio}
-                onChange={(newValue) => {
-                  setSelectedDateInicio(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} style = {{width: '100%', margin: '0 auto', marginTop: '3px', marginBottom: '10px', borderRadius: '4px'}} size="small"/>}
-              />
-            </LocalizationProvider>
-          </FormControl>
-        </Stack>
-      </Box>
-      {/*EJEMPLO DE RESPUESTA PARA MULTIMEDIA*/}
-      <Box
-        component="form"
-        className = "boxResponder question"
-        noValidate
-        autoComplete="off"
-        sx={{paddingBottom: "10px"}}
-      >
-        <Stack sx={{display:'flex'}}>
-          <p className='DescripcionPregunta'>Nombre de la pregunta</p>
-          <FormControl>
-            <input className="RespuestaArchivo" type='file' />
-          </FormControl>
-        </Stack>
-      </Box>
-      {/*EJEMPLO DE RESPUESTA PARA RESPUESTA LARGA*/}
-      <Box
-        component="form"
-        className = "boxResponder question"
-        noValidate
-        autoComplete="off"
-        sx={{paddingBottom: "10px"}}
-      >
-        <Stack sx={{display:'flex'}}>
-          <p className='DescripcionPregunta'>Nombre de la pregunta</p>
-          <FormControl>
-            <TextareaAutosize className="RespondTextArea" sx={{margin: "5px 10px"}} maxRows={3} minRows={3}/>
-          </FormControl>
-        </Stack>
-      </Box>
-      {/*EJEMPLO DE RESPUESTA PARA RESPUESTA CORTA*/}
-      <Box
-        component="form"
-        className = "boxResponder question"
-        noValidate
-        autoComplete="off"
-        sx={{paddingBottom: "10px"}}
-      >
-        <Stack sx={{display:'flex'}}>
-          <p className='DescripcionPregunta'>Nombre de la pregunta</p>
-          <FormControl>
-          <TextField id="outlined-basic" inputProps={{ maxLength: 100 }} className="RespuestaCorta" variant="outlined" />
-          </FormControl>
-        </Stack>
-      </Box>
+      {form.questions.map((pregunta)=> (
+        select_type_answer(pregunta)
+      ))}
+      
     </div>
   )
 }

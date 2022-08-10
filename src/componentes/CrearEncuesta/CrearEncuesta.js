@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './CrearEncuesta.css';
 import {useMemo} from 'react';
-
+import { useLocation } from "react-router-dom"
 
 //import Pregunta from './Pregunta.js';
 import PreguntaForm from './PreguntaForm.js';
@@ -24,6 +24,9 @@ import {deleteForm,saveForm} from '../../api/forms';
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { deleteQuestion, insertQuestion } from '../../api/questions';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Copy from "copy-to-clipboard";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const style = {
   overflowX: 'auto',
@@ -34,9 +37,9 @@ const style = {
   bgcolor: '#efefef',
   border: '2px solid #000',
   boxShadow: 24,
-  width: '80%',
-  height: '90%',
-  borderRadius: '25px'
+  height: '100px',
+  borderRadius: '15px',
+  backgroundColor: '#efefef'
 };
 
 function CrearEncuesta(){
@@ -47,7 +50,16 @@ function CrearEncuesta(){
   
   const [open, setOpen] = React.useState(false);
 
+  const [copyText, setCopyText] = useState('');
   
+  const handleCopyText = (e) => {
+      setCopyText(e.target.value);
+  } 
+  
+  const copyToClipboard = () => {
+    Copy(copyText);
+    alert(`You have copied "${copyText}"`);
+  }
 
   const handleOpen = (e) => {
     e.preventDefault();
@@ -138,6 +150,8 @@ function CrearEncuesta(){
      }
    }
 
+   
+
    const handleDelete = () => {
     deleteForm(form.id);
     navigate("/dashboard");
@@ -164,7 +178,7 @@ function CrearEncuesta(){
       </Box>
     );
   }
-
+  // const sampleLocation = useLocation();
 
   return(
     <div>
@@ -205,31 +219,25 @@ function CrearEncuesta(){
           alignItems="flex-end"
           className='btnEncuesta'
         >
-          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
+          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon/>} onClick={handleDelete}>
             Borrar
           </Button>
-          <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />
-          }/>
+           <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon/>}>Enviar</Button>
           <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
           >
-            <Box className="modal-question-matriz" sx={{ ...style, width: '80%' }}>
-              <Restricciones/>
-            </Box>
-          </Modal>
+             <Box className="modal-question-matriz" sx={{ ...style, width: '60%' }}>
+              <span>Link encuesta:</span>
+              <span id="linkEncuesta" value={copyText} onClick={handleCopyText}>{`http://localhost:3000/forms/answer/${form.id}`}</span>
+              <Button variant="contained" onClick={copyToClipboard} startIcon={<ContentCopyIcon/>}>Copiar</Button>
+            </Box> 
+          </Modal> 
         </Grid>
     </div>
   );
 }
 
 export default CrearEncuesta;
-
-
-// <PreguntaLargaCorta
-//  pregunta={e}
-//  borrarPregunta={borrarPregunta}
-//  id={index}
-// />

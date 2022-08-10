@@ -19,6 +19,8 @@ import { useUser } from "../hooks/useUser";
 import { useParams } from "react-router-dom";
 import { getFormOnce } from "../../api/forms";
 import { LinearProgress } from "@mui/material";
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 
 export default function ResponderEncuestas() {
@@ -75,6 +77,7 @@ export default function ResponderEncuestas() {
   }
 
   const handleInput = (pregunta) => (e) => {
+    console.log(e.target.value);
     setAnswers({...answers,[pregunta.id] : e.target.value});
   }
 
@@ -87,7 +90,7 @@ export default function ResponderEncuestas() {
       case "Respuesta Corta":
         return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -102,7 +105,7 @@ export default function ResponderEncuestas() {
        case "Respuesta Larga":
          return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -117,7 +120,7 @@ export default function ResponderEncuestas() {
        case "Selección simple":
          return <Box
           component="form"
-          className = "boxResponder question"
+          className = "box question"
           noValidate
           autoComplete="off"
           sx={{paddingBottom: "10px"}}
@@ -129,6 +132,7 @@ export default function ResponderEncuestas() {
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
                 className="PreguntaSeleccion"
+                onChange={handleInput(pregunta)}
               >
                 {pregunta.opciones.map((opcion) =>(
                   <FormControlLabel value={opcion} control={<Radio />} label={opcion} />)
@@ -141,7 +145,7 @@ export default function ResponderEncuestas() {
        case "Selección multiple":
          return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -165,7 +169,7 @@ export default function ResponderEncuestas() {
        case  "Fecha":
          return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -189,7 +193,7 @@ export default function ResponderEncuestas() {
        case "Multimedia":
          return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -210,10 +214,43 @@ export default function ResponderEncuestas() {
 
   return (
     <div className="">
+      <Box
+        component="form"
+        className = "box titleAnswer"
+        noValidate
+        autoComplete="off"
+        sx={{paddingBottom: "10px"}}
+      >
+        <Stack sx={{display:'flex'}}>
+          <p className='encuestaTitle'>{form.title}</p>
+          <span className="encuestaDescripcion">{form.description}</span>
+        </Stack>
+      </Box>
+      {!user ? (
+        <>
+        </>
+        ) : (
+        <>
+          <Box
+            component="form"
+            className = "box question"
+            noValidate
+            autoComplete="off"
+            sx={{paddingBottom: "10px"}}
+          >
+            <Stack sx={{display:'flex'}}>
+              <p className="newEmail">Introduzca correo electronico: </p>
+              <input className="newUser" type="email" />
+            </Stack>
+          </Box>
+        </>
+      )}
       {form.questions.map((pregunta)=> (
         select_type_answer(pregunta)
       ))}
-      
+      <Button id="sendForm" variant="contained" color='secondary' sx={{height:'40px'}} startIcon={<SendIcon />}>
+        Enviar
+      </Button>
     </div>
   )
 }

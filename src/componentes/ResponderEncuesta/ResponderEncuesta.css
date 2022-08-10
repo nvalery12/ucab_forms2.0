@@ -66,3 +66,31 @@
   margin-left: 3%;
 }
 
+.box .encuestaTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #12100C;
+}
+
+.box .encuestaDescripcion {
+  font-size: 15px;
+  color: #12100C;
+  margin-top: 5px;
+}
+
+.titleAnswer {
+  border-left: 11px solid #12100C;
+}
+
+.newUser {
+  margin: 10px 0px;
+  width: 100%;
+  height: 50px;
+  padding: 0px 6px;
+}
+
+#sendForm {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}

@@ -4,16 +4,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
 
-const App = () => {
+const App = (props) => {
 
-  // Sample data
-  const data = [
-    { name: 'Geeksforgeeks', students: 400 },
-    { name: 'Technical scripter', students: 700 },
-    { name: 'Geek-i-knack', students: 200 },
-    { name: 'Geek-o-mania', students: 1000 }
-  ];
-
+  const data = props.barData;
 
   return (
     <Box
@@ -24,11 +17,11 @@ const App = () => {
       sx={{ paddingBottom: "10px" }}
     >
       <Stack sx={{ display: 'flex' }}>
-      <p className='DescripcionPregunta'>Probabilidad de que noelio pase Seminario</p>
-        <BarChart 
+        <p className='DescripcionPregunta'>Probabilidad de que noelio pase Seminario</p>
+        <BarChart
           className='charts'
-          width={600} 
-          height={600} 
+          width={600}
+          height={600}
           data={data}
         >
           <Bar dataKey="students" fill="green" />

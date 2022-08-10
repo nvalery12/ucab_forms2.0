@@ -89,7 +89,7 @@ export default function ResponderEncuestas() {
       case "Respuesta Corta":
         return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -104,7 +104,7 @@ export default function ResponderEncuestas() {
        case "Respuesta Larga":
          return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -119,7 +119,7 @@ export default function ResponderEncuestas() {
        case "Selección simple":
          return <Box
           component="form"
-          className = "boxResponder question"
+          className = "box question"
           noValidate
           autoComplete="off"
           sx={{paddingBottom: "10px"}}
@@ -143,7 +143,7 @@ export default function ResponderEncuestas() {
        case "Selección multiple":
          return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -167,7 +167,7 @@ export default function ResponderEncuestas() {
        case  "Fecha":
          return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -191,7 +191,7 @@ export default function ResponderEncuestas() {
        case "Multimedia":
          return <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}
@@ -214,7 +214,7 @@ export default function ResponderEncuestas() {
     <div className="">
       <Box
         component="form"
-        className = "boxResponder titleAnswer"
+        className = "box titleAnswer"
         noValidate
         autoComplete="off"
         sx={{paddingBottom: "10px"}}
@@ -231,7 +231,7 @@ export default function ResponderEncuestas() {
         <>
           <Box
             component="form"
-            className = "boxResponder question"
+            className = "box question"
             noValidate
             autoComplete="off"
             sx={{paddingBottom: "10px"}}

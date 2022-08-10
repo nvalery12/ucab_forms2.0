@@ -66,13 +66,13 @@
   margin-left: 3%;
 }
 
-.boxResponder .encuestaTitle {
+.box .encuestaTitle {
   font-size: 18px;
   font-weight: bold;
   color: #12100C;
 }
 
-.boxResponder .encuestaDescripcion {
+.box .encuestaDescripcion {
   font-size: 15px;
   color: #12100C;
   margin-top: 5px;

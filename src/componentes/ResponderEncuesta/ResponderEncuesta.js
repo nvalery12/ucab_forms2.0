@@ -16,11 +16,12 @@ import FormLabel from '@mui/material/FormLabel';
 import Checkbox from '@mui/material/Checkbox';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { useUser } from "../hooks/useUser";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getFormOnce } from "../../api/forms";
 import { LinearProgress } from "@mui/material";
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import { submitResponse } from "../../api/reponses";
 
 
 export default function ResponderEncuestas() {
@@ -30,7 +31,9 @@ export default function ResponderEncuestas() {
   const [form, setForm] = useState(null);
   const [answers, setAnswers] = useState();
   const [loading, setLoading] = useState(true);
-  const { user} = useUser();
+  const  user = useUser();
+  const [name, setName]  = useState(null);
+  const navigate = useNavigate();
 
   const initializeAnswers = useCallback((questions) => {
     const answers = {};
@@ -211,6 +214,20 @@ export default function ResponderEncuestas() {
     }
   }
 
+  const updatename = (e) =>{
+    setName(e.target.value);
+  }
+
+  const send = () => {
+    if (user) {
+      setName(user.email);
+    }
+    console.log(user)
+    const responseData = {autor: name,answer: answers};
+    submitResponse(form,responseData);
+    navigate("/dashboard");
+  }
+
 
   return (
     <div className="">
@@ -240,7 +257,7 @@ export default function ResponderEncuestas() {
           >
             <Stack sx={{display:'flex'}}>
               <p className="newEmail">Introduzca correo electronico: </p>
-              <input className="newUser" type="email" />
+              <input className="newUser" type="email" onChange={updatename}/>
             </Stack>
           </Box>
         </>
@@ -248,7 +265,7 @@ export default function ResponderEncuestas() {
       {form.questions.map((pregunta)=> (
         select_type_answer(pregunta)
       ))}
-      <Button id="sendForm" variant="contained" color='secondary' sx={{height:'40px'}} startIcon={<SendIcon />}>
+      <Button id="sendForm" variant="contained" color='secondary' sx={{height:'40px'}} startIcon={<SendIcon />} onClick={send}>
         Enviar
       </Button>
     </div>

@@ -14,7 +14,7 @@ import {
   
   export const submitResponse = async (form, response) => {
     try {
-      response.submittedAt = new Date();
+      
   
       
   

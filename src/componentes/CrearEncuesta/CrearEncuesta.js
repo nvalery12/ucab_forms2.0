@@ -25,8 +25,6 @@ import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { deleteQuestion, insertQuestion } from '../../api/questions';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import Copy from "copy-to-clipboard";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const style = {
   overflowX: 'auto',
@@ -49,17 +47,6 @@ function CrearEncuesta(){
 
   
   const [open, setOpen] = React.useState(false);
-
-  const [copyText, setCopyText] = useState('');
-  
-  const handleCopyText = (e) => {
-      setCopyText(e.target.value);
-  } 
-  
-  const copyToClipboard = () => {
-    Copy(copyText);
-    alert(`You have copied "${copyText}"`);
-  }
 
   const handleOpen = (e) => {
     e.preventDefault();
@@ -231,8 +218,8 @@ function CrearEncuesta(){
           >
              <Box className="modal-question-matriz" sx={{ ...style, width: '60%' }}>
               <span>Link encuesta:</span>
-              <span id="linkEncuesta" value={copyText} onClick={handleCopyText}>{`http://localhost:3000/forms/answer/${form.id}`}</span>
-              <Button variant="contained" onClick={copyToClipboard} startIcon={<ContentCopyIcon/>}>Copiar</Button>
+              <span id="linkEncuesta">{`http://localhost:3000/forms/answer/${form.id}`}</span>
+              <Button variant="contained" startIcon={<ContentCopyIcon/>}>Copiar</Button>
             </Box> 
           </Modal> 
         </Grid>

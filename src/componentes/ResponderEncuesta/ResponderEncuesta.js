@@ -77,6 +77,7 @@ export default function ResponderEncuestas() {
   }
 
   const handleInput = (pregunta) => (e) => {
+    console.log(e.target.value);
     setAnswers({...answers,[pregunta.id] : e.target.value});
   }
 
@@ -131,6 +132,7 @@ export default function ResponderEncuestas() {
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
                 className="PreguntaSeleccion"
+                onChange={handleInput(pregunta)}
               >
                 {pregunta.opciones.map((opcion) =>(
                   <FormControlLabel value={opcion} control={<Radio />} label={opcion} />)

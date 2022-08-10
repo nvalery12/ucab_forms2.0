@@ -51,15 +51,16 @@ function PreguntaSeleccion(props){
 
   const nuevaOpciones = (opcion) => {
      setListaOpciones([opcion, ...listaOpciones]);
+     listaOpciones.push(opcion);
      props.pregunta.opciones = listaOpciones;
-    saveQuestion(props.form,props.pregunta);
+     saveQuestion(props.form,props.pregunta);
    };
 
    const borrarOpcion = (id) => {
      const listaFiltrada = listaOpciones.filter((e, index) => index !== id);
      setListaOpciones(listaFiltrada);
      props.pregunta.opciones = listaOpciones;
-    saveQuestion(props.form,props.pregunta);
+     saveQuestion(props.form,props.pregunta);
    };
 
    const handleInput = (event) =>{

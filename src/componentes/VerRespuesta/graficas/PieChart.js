@@ -3,30 +3,30 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
+/*const PieData = ({data}) => {
+  return (
+    data.maps((data) => 
+      <li key={data.name}>
+        {data.value}
+      </li>
+    )
+  )
+};*/
+
 class PieRechartComponent extends React.Component {
-  COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
-  pieData = [
-    {
-      name: "Apple",
-      value: 54.85
-    },
-    {
-      name: "Samsung",
-      value: 47.91
-    },
-    {
-      name: "Redmi",
-      value: 16.85
-    },
-    {
-      name: "One Plus",
-      value: 16.14
-    },
-    {
-      name: "Others",
-      value: 10.25
+
+  /*constructor(props) {
+    super(props)
+    
+    this.state = {
+      pieData: []
     }
-  ];
+  }*/
+
+
+
+  COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
+  pieChart = this.props.pieData;
   CustomTooltip = ({ active, payload, label }) => {
     if (active) {
       return (
@@ -45,7 +45,9 @@ class PieRechartComponent extends React.Component {
     return null;
   };
   render() {
+    
     return (
+      
       <Box
         component="form"
         className="box question"
@@ -53,15 +55,19 @@ class PieRechartComponent extends React.Component {
         autoComplete="off"
         sx={{ paddingBottom: "10px" }}
       >
+
         <Stack sx={{ display: 'flex' }}>
-        <p className='DescripcionPregunta'>Distribucion de los mecanicos de la ciudad</p>
-          <PieChart 
+          <p className='DescripcionPregunta'>Distribucion de noelios</p>
+
+
+          {/*console.log(pieChart)*/}
+          <PieChart
             className='charts'
-            width={730} 
+            width={730}
             height={300}
-            >
+          >
             <Pie
-              data={this.pieData}
+              data={this.pieChart}
               color="#000000"
               dataKey="value"
               nameKey="name"
@@ -70,7 +76,7 @@ class PieRechartComponent extends React.Component {
               outerRadius={120}
               fill="#8884d8"
             >
-              {this.pieData.map((entry, index) => (
+              {this.pieChart.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={this.COLORS[index % this.COLORS.length]}

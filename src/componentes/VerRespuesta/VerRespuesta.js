@@ -80,10 +80,18 @@ export default class VerRespuestas extends Component {
     )
   }
 
+  seleccion_simple() {
+    
+    return (
+      //<PieChart pieData={pData}/>
+      null
+    )
+  }
+
   QuestionType(type) {
     switch(type) {
       case 'seleccionSimple':
-        return null;
+        return <seleccion_simple/>;
       case 'seleccionMultiple':
         return null;
       case 'respuestaLarga':
@@ -95,7 +103,40 @@ export default class VerRespuestas extends Component {
     }
   }
 
+  
+
   render() {
+
+    const pData = [
+      {
+        name: "Apple",
+        value: 54.85
+      },
+      {
+        name: "Samsung",
+        value: 47.91
+      },
+      {
+        name: "Redmi",
+        value: 16.85
+      },
+      {
+        name: "One Plus",
+        value: 16.14
+      },
+      {
+        name: "Others",
+        value: 10.25
+      }
+    ];
+
+    const bData = [
+      { name: 'Geeksforgeeks', students: 400 },
+      { name: 'Technical scripter', students: 700 },
+      { name: 'Geek-i-knack', students: 200 },
+      { name: 'Geek-o-mania', students: 1000 }
+    ];
+
     return (
       <div>
         <div id="divToPrint" className="mt4" sx={{
@@ -121,6 +162,8 @@ export default class VerRespuestas extends Component {
               </div>
             </Stack>
           </Box>
+          <PieChart pieData={pData}/>
+          <BarChart barData={bData}/>
           {(() => {
             for(var i=0;i<10;i++) {
               {/* {this.QuestionType(type)} */}

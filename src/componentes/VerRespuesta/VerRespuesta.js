@@ -15,16 +15,16 @@ import './VerRespuesta.css';
 export default function VerRespuestas() {
   const {form, questions, response} = useForm();
 
-  function countSelections(){
+  function countSelections(q){
     let totalmuestra = 0;
-    for (const q of questions) {
+    // for (const q of questions) {
       for (const r of response) {
         let counts = [];
         const ids = Object.keys(response.answer);
         for (const o of q.opciones) {
           counts.push(0);
         }
-        for (let i=0 ; i<Object.keys(response.answer).length ; i++) {
+        for (let i=0 ; i<ids.length ; i++) {
           if(response.answer[ids[i]] == q.id){
             switch (q.type) {
               case "Selección simple":
@@ -48,13 +48,13 @@ export default function VerRespuestas() {
             }
           }
         }
-      }
-      totalmuestra++;
-      for (let i=0 ; i<counts.length ; i++) {
-        counts[o] = counts[o]/totalmuestra*100;
-      }
-      return counts;
+        totalmuestra++;
+        for (let i=0 ; i<counts.length ; i++) {
+          counts[o] = counts[o]/totalmuestra*100;
+        }
+        return counts;
   }
+
 
   // function estadisticasSeleccionMultiple(q,r,totalMuestra,counts){
   //   // for (const o of q.opciones) {

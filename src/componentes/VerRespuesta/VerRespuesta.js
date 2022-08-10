@@ -15,6 +15,13 @@ import './VerRespuesta.css';
 export default function VerRespuestas() {
   const {form, questions, response} = useForm();
 
+
+  /* Este codigo retorna un arreglo de n valores float que son
+    los porcentajes de respuesta para cada opcion de una pregunta que recibe
+    Funciona? No lo se. Tiene sentido? Probablemente no. Lo haria de nuevo? Jamas.
+    Resumen: Recibe un documento de question, cicla sobre responses y verifica el 
+    tipo de pregunta, cuenta las respuestas, las suma en un arreglo, divide, opera y chao.
+    No se como implementarlo con lo demas, auxilio*/
   function countSelections(q){
     let totalmuestra = 0;
     // for (const q of questions) {

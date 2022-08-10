@@ -19,6 +19,8 @@ import { useUser } from "../hooks/useUser";
 import { useParams } from "react-router-dom";
 import { getFormOnce } from "../../api/forms";
 import { LinearProgress } from "@mui/material";
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 
 export default function ResponderEncuestas() {
@@ -210,10 +212,43 @@ export default function ResponderEncuestas() {
 
   return (
     <div className="">
+      <Box
+        component="form"
+        className = "boxResponder titleAnswer"
+        noValidate
+        autoComplete="off"
+        sx={{paddingBottom: "10px"}}
+      >
+        <Stack sx={{display:'flex'}}>
+          <p className='encuestaTitle'>{form.title}</p>
+          <span className="encuestaDescripcion">{form.description}</span>
+        </Stack>
+      </Box>
+      {!user ? (
+        <>
+        </>
+        ) : (
+        <>
+          <Box
+            component="form"
+            className = "boxResponder question"
+            noValidate
+            autoComplete="off"
+            sx={{paddingBottom: "10px"}}
+          >
+            <Stack sx={{display:'flex'}}>
+              <p className="newEmail">Introduzca correo electronico: </p>
+              <input className="newUser" type="email" />
+            </Stack>
+          </Box>
+        </>
+      )}
       {form.questions.map((pregunta)=> (
         select_type_answer(pregunta)
       ))}
-      
+      <Button id="sendForm" variant="contained" color='secondary' sx={{height:'40px'}} startIcon={<SendIcon />}>
+        Enviar
+      </Button>
     </div>
   )
 }

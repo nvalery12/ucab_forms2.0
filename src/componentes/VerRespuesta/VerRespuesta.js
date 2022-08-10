@@ -1,3 +1,4 @@
+import { QuestionMarkSharp } from '@mui/icons-material';
 import React from 'react';
 import BarChart from './graficas/BarChart'
 import Histogram from './graficas/Histogram'
@@ -18,3 +19,10 @@ const VerRespuesta = () => {
 }
 
 export default VerRespuesta
+
+for(let i of questions.length) {
+  for (let z = 0; z < responses.length; z++) {
+    const element = responses[z];
+    element.answer[questions[i].id]
+  }  
+};

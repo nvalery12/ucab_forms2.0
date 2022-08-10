@@ -1,7 +1,7 @@
 import React from 'react';
 import './CrearEncuesta.css';
 import {useMemo} from 'react';
-
+import { useLocation } from "react-router-dom"
 
 //import Pregunta from './Pregunta.js';
 import PreguntaForm from './PreguntaForm.js';
@@ -47,7 +47,7 @@ function CrearEncuesta(){
   
   const [open, setOpen] = React.useState(false);
 
-  
+    
 
   const handleOpen = (e) => {
     e.preventDefault();
@@ -138,6 +138,8 @@ function CrearEncuesta(){
      }
    }
 
+   
+
    const handleDelete = () => {
     deleteForm(form.id);
     navigate("/dashboard");
@@ -164,7 +166,7 @@ function CrearEncuesta(){
       </Box>
     );
   }
-
+  // const sampleLocation = useLocation();
 
   return(
     <div>
@@ -208,18 +210,19 @@ function CrearEncuesta(){
           <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
             Borrar
           </Button>
-          <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />
-          }/>
+           <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />
+          }/> 
           <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
           >
-            <Box className="modal-question-matriz" sx={{ ...style, width: '80%' }}>
-              <Restricciones/>
-            </Box>
-          </Modal>
+             <Box className="modal-question-matriz" sx={{ ...style, width: '80%' }}>
+              {/* <Restricciones/> */} 
+              <span>link piola: {`http://localhost:3000/forms/answers/${form.id}`} </span>
+            </Box> 
+          </Modal> 
         </Grid>
     </div>
   );

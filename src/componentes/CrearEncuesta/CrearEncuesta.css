@@ -304,6 +304,7 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100px;
 }
 
 .modal-question-matriz #linkEncuesta {
@@ -311,4 +312,22 @@ button:focus {
   margin: 0px 10px;
   padding: 10px 15px;
   border-radius: 5px;
+}
+
+.modal-question-matriz {
+  width: 800px;
+}
+
+@media (max-width: 800px) {
+  .modal-question-matriz {
+    width: 400px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    padding: 10px;
+  }
+  .modal-question-matriz #linkEncuesta {
+    margin: 0px;
+  }
 }

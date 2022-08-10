@@ -35,7 +35,6 @@ const style = {
   bgcolor: '#efefef',
   border: '2px solid #000',
   boxShadow: 24,
-  height: '100px',
   borderRadius: '15px',
   backgroundColor: '#efefef'
 };
@@ -216,7 +215,7 @@ function CrearEncuesta(){
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
           >
-             <Box className="modal-question-matriz" sx={{ ...style, width: '60%' }}>
+             <Box className="modal-question-matriz" sx={{ ...style}}>
               <span>Link encuesta:</span>
               <span id="linkEncuesta">{`http://localhost:3000/forms/answer/${form.id}`}</span>
               <Button variant="contained" startIcon={<ContentCopyIcon/>}>Copiar</Button>

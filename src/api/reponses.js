@@ -38,13 +38,12 @@ import {
   export const getResponses = (formId, callback) => {
     const responsesRef = collection(db, "forms", formId, "responses");
   
-    const q = query(responsesRef, orderBy("submittedAt"));
+    const q = query(responsesRef);
   
     return onSnapshot(q, (snapshot) => {
       const responses = snapshot.docs.map((doc) => {
         const response = doc.data();
         response.id = doc.id;
-        response.submittedAt = response.submittedAt.toDate();
         return response;
       });
   

@@ -299,3 +299,16 @@ button:focus {
   background-color: #04652a;
   color: rgb(223, 223, 223);
 }
+
+.modal-question-matriz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-question-matriz #linkEncuesta {
+  background-color: white;
+  margin: 0px 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+}

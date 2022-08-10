@@ -16,6 +16,7 @@ import Login from './componentes/Login-Register/Login';
 import ResponderEncuestas from './componentes/ResponderEncuesta/ResponderEncuesta';
 import UnAuthPage from './componentes/UnAuthPage';
 import VerEncuestas from './componentes/VerEncuestas/ListaEncuestas';
+import VerRespuestas from './componentes/VerRespuesta/VerRespuesta'
 
 export default function App() {
 

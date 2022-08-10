@@ -3,28 +3,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
-/*const PieData = ({data}) => {
-  return (
-    data.maps((data) => 
-      <li key={data.name}>
-        {data.value}
-      </li>
-    )
-  )
-};*/
-
 class PieRechartComponent extends React.Component {
-
-  /*constructor(props) {
-    super(props)
-    
-    this.state = {
-      pieData: []
-    }
-  }*/
-
-
-
   COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
   pieChart = this.props.pieData;
   CustomTooltip = ({ active, payload, label }) => {

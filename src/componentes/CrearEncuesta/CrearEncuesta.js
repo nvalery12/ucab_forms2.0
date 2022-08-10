@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './CrearEncuesta.css';
 import {useMemo} from 'react';
 import { useLocation } from "react-router-dom"
@@ -24,6 +24,7 @@ import {deleteForm,saveForm} from '../../api/forms';
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { deleteQuestion, insertQuestion } from '../../api/questions';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const style = {
   overflowX: 'auto',
@@ -34,9 +35,9 @@ const style = {
   bgcolor: '#efefef',
   border: '2px solid #000',
   boxShadow: 24,
-  width: '80%',
-  height: '90%',
-  borderRadius: '25px'
+  height: '100px',
+  borderRadius: '15px',
+  backgroundColor: '#efefef'
 };
 
 function CrearEncuesta(){
@@ -46,8 +47,6 @@ function CrearEncuesta(){
 
   
   const [open, setOpen] = React.useState(false);
-
-    
 
   const handleOpen = (e) => {
     e.preventDefault();
@@ -207,20 +206,20 @@ function CrearEncuesta(){
           alignItems="flex-end"
           className='btnEncuesta'
         >
-          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon />} onClick={handleDelete}>
+          <Button color='secondary' variant="outlined" startIcon={<DeleteIcon/>} onClick={handleDelete}>
             Borrar
           </Button>
-           <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon />
-          }/> 
+           <Button variant="contained" onClick={handleOpen} endIcon={<SendIcon/>}>Enviar</Button>
           <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
           >
-             <Box className="modal-question-matriz" sx={{ ...style, width: '80%' }}>
-              {/* <Restricciones/> */} 
-              <span>link piola: {`http://localhost:3000/forms/answers/${form.id}`} </span>
+             <Box className="modal-question-matriz" sx={{ ...style, width: '60%' }}>
+              <span>Link encuesta:</span>
+              <span id="linkEncuesta">{`http://localhost:3000/forms/answer/${form.id}`}</span>
+              <Button variant="contained" startIcon={<ContentCopyIcon/>}>Copiar</Button>
             </Box> 
           </Modal> 
         </Grid>
@@ -229,10 +228,3 @@ function CrearEncuesta(){
 }
 
 export default CrearEncuesta;
-
-
-// <PreguntaLargaCorta
-//  pregunta={e}
-//  borrarPregunta={borrarPregunta}
-//  id={index}
-// />

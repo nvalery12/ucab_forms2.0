@@ -68,7 +68,7 @@ export default function ListaEncuestas() {
       for (let i = 0; i < userForms.length; i++) {  
         let form = userForms[i];
         encuestas.push(<div className="column" id={i}>
-          <button className='btnViewEncuesta' >
+          <button className='btnViewEncuesta' data={form.id}>
             <img className='form-picture' src={Ejemplo} alt='Ejemplo de ejemplo'/>
           </button>
           <div className="title-box" >

@@ -12,130 +12,42 @@ import { useForm } from '../hooks/useForm';
 import { useNavigate } from "react-router-dom";
 import { deleteForm, getUserForms, getCollaborationForms } from '../../api/forms';
 import { useUser } from '../hooks/useUser';
-import { ConstructionOutlined } from '@mui/icons-material';
+import { Autorenew, ConstructionOutlined } from '@mui/icons-material';
+import { LinearProgress } from '@mui/material';
 
 import './VerRespuesta.css';
 
-/* Este codigo retorna un arreglo de n valores float que son
-    los porcentajes de respuesta para cada opcion de una pregunta que recibe
-    Funciona? No lo se. Tiene sentido? Probablemente no. Lo haria de nuevo? Jamas.
-    Resumen: Recibe un documento de question, cicla sobre responses y verifica el 
-    tipo de pregunta, cuenta las respuestas, las suma en un arreglo, divide, opera y chao.
-    No se como implementarlo con lo demas, auxilio
-function countSelections() {
-
-  [form, questions, respons] = useForm();
-
-  const q = questions;
-
-  let totalmuestra = 0;
-  // for (const q of questions) {
-  for (const r of response) {
-    let counts = [];
-    const ids = Object.keys(response.answer);
-    for (const o of q.opciones) {
-      counts.push(0);
-    }
-    for (let i = 0; i < ids.length; i++) {
-      if (response.answer[ids[i]] == q.id) {
-        switch (q.type) {
-          case "Selección simple":
-            for (let i = 0; i < r.length; i++) {
-              for (let i = 0; i < q.opciones.length; i++) {
-                if (r === q.opciones[i]) {
-                  counts[i]++;
-                }
-              }
-            }
-            break;
-
-          case "Selección múltiple":
-            for (let i = 0; i < r.length; i++) {
-              if (r.includes(q.opciones[i])) {
-                counts[i]++;
-              }
-            }
-            break;
-        }
-      }
-    }
-  }
-  totalmuestra++;
-  for (let i = 0; i < counts.length; i++) {
-    counts[o] = counts[o] / totalmuestra * 100;
-  }
-  //return counts;
-
-
-
-  return data.maps(x => x);
-}
-*/
 
 
 export default function VerRespuestas() {
 
   const user = useUser();
   const navigate = useNavigate();
-  const [userForms, setUserForms] = useState([]);
-  const [collaborationForms, setCollaborationForms] = useState([]);
-  const [loadingUserForms, setLoadingUserForms] = useState(true);
-  const [loadingCollaborationForms, setLoadingCollaborationForms] = useState(true);
+  const { form, questions, responses,loading} = useForm();
 
-  useEffect(() => {
-    const unsubscribeUserForms = getUserForms(user.id, (forms) => {
-      
-      setUserForms(forms);
-      setLoadingUserForms(false);
-    });
-
-    return () => {
-      unsubscribeUserForms();
-    };
-  }, [user]);
-
-  if (loadingUserForms) {
+  const respuesta_Larga = (pregunta,respuesta) => {
     return (
-      <div className='spinner'></div>
-    )      
+      <Box
+        component="form"
+        className="box question"
+        noValidate
+        autoComplete="off"
+        sx={{ paddingBottom: "10px" }}
+      >
+        <Stack sx={{ display: 'flex' }}>
+          <p className='DescripcionPregunta'>{pregunta.title}</p>
+          <div className="email_answer">
+            {(() => {
+              
+                  <span>{respuesta.answer[pregunta.id]}</span>
+            })()}
+          </div>
+        </Stack>
+      </Box>
+    )
   }
 
-  const formularios = () =>{
-    let encuestas = [];
-    console.log('angy <3')
-    for (let i = 0; i < userForms.length; i++) {  
-      let form = userForms[i];
-      console.log(form);
-      for (let j = 0; j < form.length; j++) {  
-        let question = form[j];
-        console.log(question);
-      }
-    }
-    return encuestas;
-  };
-
-
-/*  const resultadosBarChart = () => {
-
-    const data = Array(questions[1].opciones.length);
-
-
-    console.log(questions[1].opciones.length);
-    //console.log(question[1].opciones);
-
-    for (var i = 0; i < questions[1].opciones.length; i++) {
-      //console.log(question[1].opciones);
-    }
-    /*data.push({
-      name: question[1].opciones,
-      value: 0
-    });
-
-
-    return data.maps(x => x);
-  }*/
-
-  const respuesta_Larga = () => {
+  const respuesta_Corta = (pregunta,respuesta) => {
     return (
       <Box
         component="form"
@@ -148,11 +60,7 @@ export default function VerRespuestas() {
           <p className='DescripcionPregunta'>{/*Pregunta*/}</p>
           <div className="email_answer">
             {(() => {
-              for (var i = 0; i < 10; i++) {
-                <>
-                  <span>{/*Respuesta*/}</span>
-                </>
-              }
+                  <span>{respuesta.answer[pregunta.id]}</span>
             })()}
           </div>
         </Stack>
@@ -160,32 +68,7 @@ export default function VerRespuestas() {
     )
   }
 
-  const respuesta_Corta = () => {
-    return (
-      <Box
-        component="form"
-        className="box question"
-        noValidate
-        autoComplete="off"
-        sx={{ paddingBottom: "10px" }}
-      >
-        <Stack sx={{ display: 'flex' }}>
-          <p className='DescripcionPregunta'>{/*Pregunta*/}</p>
-          <div className="email_answer">
-            {(() => {
-              for (var i = 0; i < 10; i++) {
-                <>
-                  <span>{/*Respuesta*/}</span>
-                </>
-              }
-            })()}
-          </div>
-        </Stack>
-      </Box>
-    )
-  }
-
-  const seleccion_simple = () => {
+  const seleccion_simple = (pregunta) => {
 
     return (
       //<PieChart pieData={pData}/>
@@ -193,19 +76,25 @@ export default function VerRespuestas() {
     )
   }
 
-  const QuestionType = (type) => {
-    switch (type) {
+
+  const responsestype = (pregunta,respuesta) =>{
+    switch (pregunta.type) {
       case 'seleccionSimple':
         return <seleccion_simple />;
       case 'seleccionMultiple':
         return null;
-      case 'respuestaLarga':
-        return <respuesta_Larga />;
-      case 'respuestaCorta':
-        return <respuesta_Corta />;
+      case 'Respuesta Larga':
+        return respuesta_Larga(pregunta,respuesta);
+      case 'Respuesta Corta':
+        return respuesta_Corta(pregunta,respuesta);
       default:
         return;
     }
+  }
+  const QuestionType = (pregunta) => {
+    responses.map((e)=>(
+      responsestype(pregunta,e)
+    ))
   }
 
   const pData = [
@@ -238,6 +127,20 @@ export default function VerRespuestas() {
     { name: 'Geek-o-mania', students: 1000 }
   ];
 
+  const autor = (respuesta) =>{
+    return <span>{respuesta.autor}</span>
+  }
+
+  
+
+  if (loading) {
+    return (
+      <Box>
+        <LinearProgress />
+      </Box>
+    );
+  }
+
   return (
     <div>
       <div id="divToPrint" className="mt4" sx={{
@@ -257,20 +160,13 @@ export default function VerRespuestas() {
           <Stack sx={{ display: 'flex' }}>
             <p className='DescripcionPregunta'>Respondiron:</p>
             <div className="email_answer">
-              <span>example@example.com</span>
-              <span>example@example.com</span>
-              <span>example@example.com</span>
+              {responses.map((e) => ( autor(e)))}
             </div>
           </Stack>
         </Box>
-        {formularios()} 
         <PieChart pieData={pData} />
         <BarChart barData={bData} />
-        {(() => {
-          for (var i = 0; i < 10; i++) {
-            {/* {this.QuestionType(type)} */ }
-          }
-        })()}
+        {questions.map((pregunta)=> (QuestionType(pregunta)))}
       </div>
 
     </div>

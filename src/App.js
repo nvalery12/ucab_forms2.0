@@ -1,25 +1,33 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './App.css';
+import { useAuth } from './api/firebaseConfiguration';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 // import {
 //   BrowserRouter as Router,
 //   Routes,
 //   Route,
 //   Link
 // } from "react-router-dom";
-import { BrowserRouter as Router, Navigate, Outlet, Route, Routes } from "react-router-dom";
-import AuthPage from './componentes/AuthPage';
 import CrearEncuesta from './componentes/CrearEncuesta/CrearEncuesta';
-import Header from './componentes/Header/Header';
-import { FormProvider } from './componentes/hooks/useForm';
-import { UserProvider } from './componentes/hooks/useUser';
-import Login from './componentes/Login-Register/Login';
-import ResponderEncuestas from './componentes/ResponderEncuesta/ResponderEncuesta';
-import UnAuthPage from './componentes/UnAuthPage';
+import PreguntaMatriz from './componentes/CrearEncuesta/PreguntaMatriz';
 import VerEncuestas from './componentes/VerEncuestas/ListaEncuestas';
-
+import UserConfig from './componentes/Configuracion-User/UserConfig';
+import SolicitarCopia from './componentes/Mensaje-Final/SolicitarCopia';
+import Restricciones from './componentes/CrearEncuesta/RestriccionesEncuesta/Restricciones';
+import ResponderEncuestas from './componentes/ResponderEncuesta/ResponderEncuesta';
+import Header from './componentes/Header/Header';
+import Login from './componentes/Login-Register/Login';
+import VerRespuesta from './componentes/VerRespuesta/VerRespuesta';
+import btnCrearEncuesta from './componentes/CrearEncuesta/btnCrearEncuesta';
+import { Navigate, Outlet, Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import AuthPage from './componentes/AuthPage';
+import UnAuthPage from './componentes/UnAuthPage';
+import {UserProvider} from './componentes/hooks/useUser';
+import {FormProvider} from './componentes/hooks/useForm';
+import ListaEncuestas from './componentes/VerEncuestas/ListaEncuestas';
+import CuentaConfig from './componentes/Configuracion-User/partes/CuentaConfig';
 export default function App() {
 
-  const theme = createTheme({
+  const theme = createTheme( {
     typography: {
       fontFamily: [
         'Poppins',
@@ -43,55 +51,57 @@ export default function App() {
   });
 
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <UserProvider>
-          <Router>
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <UserProvider>
+            <Router>
             <Routes>
               <Route path="/" element={<Navigate to="/login" replace />} />
               <Route
-                element={
-                  <UnAuthPage>
-                    <Outlet />
-                  </UnAuthPage>
-                }
-              >
-                <Route path="/login" element={<Login />} />
-              </Route>
+              element={
+                <UnAuthPage>
+                  <Outlet />
+                </UnAuthPage>
+              }
+            >
+              <Route path="/login" element={<Login/>} />
+            </Route>
+            <Route
+              element={
+                <AuthPage>
+                  <Outlet />
+                </AuthPage>
+              }
+            >
               <Route
+                path="/dashboard"
                 element={
-                  <AuthPage>
-                    <Outlet />
-                  </AuthPage>
+                  <>
+                    <Header />
+                    <VerEncuestas/>
+                  </>
                 }
-              >
-                <Route
-                  path="/dashboard"
-                  element={
-                    <>
-                      <Header />
-                      <VerEncuestas />
-                    </>
-                  }
-                />
-              </Route>
+              />
+              <Route path='/manage_account' element={<UserConfig/>}/>
+                
+              <Route path="/forms/estadisticas/:id" element={
+                <FormProvider>
+                  <VerRespuesta/>
+                </FormProvider>} />
               <Route
                 path="/forms/edit/:id"
                 element={
                   <FormProvider>
-                    <Header />
+                    <Header/>
                     <CrearEncuesta />
                   </FormProvider>
                 }
               />
-              <Route path="/forms/answer/:id" element={<>
-              <Header />
-              <ResponderEncuestas /></>} />
-
+              </Route>
             </Routes>
-          </Router>
-        </UserProvider>
-      </ThemeProvider>
-    </div>
+            </Router>
+          </UserProvider>
+        </ThemeProvider>
+      </div>
   );
 }

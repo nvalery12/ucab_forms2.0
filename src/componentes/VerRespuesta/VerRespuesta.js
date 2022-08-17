@@ -20,9 +20,9 @@ const VerRespuesta = () => {
 
 export default VerRespuesta
 
-for(let i of questions.length) {
-  for (let z = 0; z < responses.length; z++) {
-    const element = responses[z];
-    element.answer[questions[i].id]
-  }  
-};
+// for(let i of questions.length) {
+//   for (let z = 0; z < responses.length; z++) {
+//     const element = responses[z];
+//     element.answer[questions[i].id]
+//   }  
+// };

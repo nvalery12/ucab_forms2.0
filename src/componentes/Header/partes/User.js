@@ -13,9 +13,12 @@ import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useUser } from '../../hooks/useUser';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { ManageAccounts } from '@mui/icons-material';
 
 export default function User() {
   const user = useUser();
+  const navigate = useNavigate();
 
 
   async function handleLogout() {
@@ -34,7 +37,8 @@ export default function User() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  
+  const manage_config=()=> {navigate("/manage_account")}
   return (
     <div className='headerUser'>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -90,7 +94,7 @@ export default function User() {
           <Avatar /> {user.email}
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={manage_config}> 
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
